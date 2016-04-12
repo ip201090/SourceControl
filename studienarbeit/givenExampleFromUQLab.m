@@ -33,7 +33,7 @@ MetaOpts.Input = myInput;
 % Ishigami model that was created
 MetaOpts.FullModel = myModel;
 
-X = uq_getSample(100000,'MC');
+X = uq_getSample(10000,'MC');
 
 %% Calculating the coefficients with different methods
 
@@ -43,7 +43,7 @@ PCE_Quadrature = uq_createModel(MetaOpts);
 
 % % Used method: Least-Squares
 MetaOpts.Method = 'OLS';
-MetaOpts.ExpDesign.NSamples = 100000;
+MetaOpts.ExpDesign.NSamples = 10000;
 MetaOpts.ExpDesign.Sampling = 'MC';
 
 PCE_OLS = uq_createModel(MetaOpts);
@@ -94,6 +94,18 @@ for j=1:size(X,1)
     y_mean_ols(j) = mean(Y_OLS(1:j,1));
     y_sd_ols(j) = sqrt(1/(length(y_mean_ols(j)-1))*sum(y_mean_ols(j(:))-...
         y_mean_tot_ols).^2);
+    
+    %Calculation of the eoc (estimated order of convergence for each
+    %value respectively
+    if(j>1)
+       eoc_mean_mc = log10(y_mean(j)/y_mean(j-1))/log10(j/(j-1)); 
+       eoc_mean_quad = log10(y_mean_quad(j)/y_mean_quad(j-1))/log10(j/(j-1));
+       eoc_mean_ols = log10(y_mean_ols(j)/y_mean_ols(j-1))/log10(j/(j-1));
+       
+       eoc_sd_mc = log10(y_sd(j)/y_sd(j-1))/log10(j/(j-1));
+       eoc_sd_quad = log10(y_sd_quad(j)/y_sd(j-1))/log10(j/(j-1));
+       eoc_sd_ols = log10(y_sd_ols(j)/y_sd(j-1))/log10(j/(j-1));
+    end
 end
 
 %% Plot of the respective mean
@@ -101,64 +113,71 @@ range = 1:size(X,1);
 
 figure;
 plot(range,y_mean,'b',range,y_mean_quad,'r',range,y_mean_ols,'g'),
+ylim([2 6]);
 xlabel('Amount of Samples'), ylabel('Mean of the Ishigami Output');
 legend('Mean of Y calc. with MC','Mean of Y calc. with Quadrature PC',...
     'Mean of Y calc. with OLS Regression');
 title('Means of the Ishigami Function calc. with Different Methods');
 
 figure;
-plot(range,y_mean_tot,'x');
+plot(range,ones(size((range),2))*y_mean_tot);
+ylim([3.25 3.75]);
 hold on;
 plot(y_mean,'b');
-xlabel('Amount of Samples'), ylabel('Convergence of the MC Mean');
+xlabel('Amount of Samples'), ylabel('Y_Mean_MC');
 title('Convergence of the Mean via MC Simulation')
 hold off;
 
 
 figure;
-plot(range,y_mean_tot_quad,'x');
+plot(range,ones(size((range),2))*y_mean_tot_quad);
 hold on;
 plot(y_mean_quad,'r');
-xlabel('Amount of Samples'),ylabel('Convergence of the Quadrature Mean');
+xlabel('Amount of Samples'),ylabel('Y_Mean_Quadrature');
 title('Convergence of the Mean via Quadrature gPC');
 hold off;
 
 figure;
-plot(range,y_mean_tot_ols,'x');
+plot(range,ones(size((range),2))*y_mean_tot_ols);
+ylim([2 4]);
 hold on;
 plot(y_mean_ols,'g');
-xlabel('Amount of Samples'),ylabel('Convergence of the OLS Mean');
+xlabel('Amount of Samples'),ylabel('Y_Mean_OLS');
 title('Convergence of the Mean via OLS Regression gPC');
 hold off;
 %% Plot of the respective SD
 
 figure;
 plot(range,y_sd,'b',range,y_sd_quad,'r',range,y_sd_ols,'g'),
+ylim([-0.1 0.5])
 xlabel('Amount of Samples'), ylabel('SD of the Ishigami Output');
 legend('SD of Y calc. with MC','SD of Y calc. with Quadrature PC',...
     'SD of Y calc. with OLS Regression');
 title('SDs of the Ishigami Function calc. with Different Methods');
 
 figure;
-plot(range,y_sd_tot,'x');
+plot(range,ones(size((range),2))*y_sd_tot);
+ylim([-0.1 0.25]);
 hold on;
 plot(y_sd,'b');
-xlabel('Amount of Samples'), ylabel('Convergence of the SD MC');
+xlabel('Amount of Samples'), ylabel('Y_SD_MC');
 title('Convergence of the SD via MC');
 hold off;
 
 figure;
-plot(range,y_sd_tot,'x')
+plot(range,ones(size((range),2))*y_sd_tot);
+ylim([-0.1 0.25]);
 hold on;
-plot(y_sd_quad,'g')
-xlabel('Amount of Samples'), ylabel('Convergence of the SD Quadrature');
+plot(y_sd_quad,'r')
+xlabel('Amount of Samples'), ylabel('Y_SD_Quadrature');
 title('Convergence of the SD via Quadrature gPC');
 
 figure,
-plot(range,y_sd_tot);
+plot(range,ones(size((range),2))*y_sd_tot);
+ylim([-0.1 0.25]);
 hold on;
 plot(range,y_sd_ols,'g');
-xlabel('Amount of Samples'), ylabel('Convergence of the SD OLS Regression');
+xlabel('Amount of Samples'), ylabel('Y_SD_OLS');
 title('Convergence of the SD via OLS Regression gPC');
 
 
