@@ -62,11 +62,11 @@ xlabel('MC Samples'),ylabel('Y MC');
 
 figure;
 plot(X,Y_Quadrature,'r');
-xlabel('MC Samples'),ylabel('Y Quadrature PC');
+xlabel('MC Samples'),ylabel('Y Quadrature gPC');
 
 figure;
 plot(X,Y_OLS,'g');
-xlabel('MC Sampel'),ylabel('Y OLS');
+xlabel('MC Sampel'),ylabel('Y OLS gPC');
 
 
 %% Calculation of the mean and the sd for y_full,y_quadrature and y_ols
@@ -94,19 +94,26 @@ for j=1:size(X,1)
     y_mean_ols(j) = mean(Y_OLS(1:j,1));
     y_sd_ols(j) = sqrt(1/(length(y_mean_ols(j)-1))*sum(y_mean_ols(j(:))-...
         y_mean_tot_ols).^2);
-    
-    %Calculation of the eoc (estimated order of convergence for each
-    %value respectively
-    if(j>1)
-       eoc_mean_mc = log10(y_mean(j)/y_mean(j-1))/log10(j/(j-1)); 
-       eoc_mean_quad = log10(y_mean_quad(j)/y_mean_quad(j-1))/log10(j/(j-1));
-       eoc_mean_ols = log10(y_mean_ols(j)/y_mean_ols(j-1))/log10(j/(j-1));
-       
-       eoc_sd_mc = log10(y_sd(j)/y_sd(j-1))/log10(j/(j-1));
-       eoc_sd_quad = log10(y_sd_quad(j)/y_sd(j-1))/log10(j/(j-1));
-       eoc_sd_ols = log10(y_sd_ols(j)/y_sd(j-1))/log10(j/(j-1));
+    if(j>3)
+         eoc_mean_mc(j) = ...
+         log10(...
+        abs((y_mean(j)-y_mean(j-1))/(y_mean(j-1)-y_mean(j-2))))...
+             /...
+             log10(...
+             abs((y_mean(j-1)-y_mean(j-2))/(y_mean(j-2)-y_mean(j-3))));
+%        eoc_mean_quad = log10(y_mean_quad(j)/y_mean_quad(j-1))/log10(j/(j-1));
+%        eoc_mean_ols = log10(y_mean_ols(j)/y_mean_ols(j-1))/log10(j/(j-1));
+%        
+%        eoc_sd_mc = log10(y_sd(j)/y_sd(j-1))/log10(j/(j-1));
+%        eoc_sd_quad = log10(y_sd_quad(j)/y_sd(j-1))/log10(j/(j-1));
+%        eoc_sd_ols = log10(y_sd_ols(j)/y_sd(j-1))/log10(j/(j-1));
     end
 end
+
+%% Calculation of the eoc (estimated order of convergence)
+
+
+
 
 %% Plot of the respective mean
 range = 1:size(X,1);
@@ -124,7 +131,7 @@ plot(range,ones(size((range),2))*y_mean_tot);
 ylim([3.25 3.75]);
 hold on;
 plot(y_mean,'b');
-xlabel('Amount of Samples'), ylabel('Y_Mean_MC');
+xlabel('Amount of Samples'), ylabel('Y_{Mean}_{MC}');
 title('Convergence of the Mean via MC Simulation')
 hold off;
 
@@ -133,7 +140,7 @@ figure;
 plot(range,ones(size((range),2))*y_mean_tot_quad);
 hold on;
 plot(y_mean_quad,'r');
-xlabel('Amount of Samples'),ylabel('Y_Mean_Quadrature');
+xlabel('Amount of Samples'),ylabel('Y_{Mean}_{Quadrature}');
 title('Convergence of the Mean via Quadrature gPC');
 hold off;
 
@@ -142,7 +149,7 @@ plot(range,ones(size((range),2))*y_mean_tot_ols);
 ylim([2 4]);
 hold on;
 plot(y_mean_ols,'g');
-xlabel('Amount of Samples'),ylabel('Y_Mean_OLS');
+xlabel('Amount of Samples'),ylabel('Y_{Mean}_{OLS}');
 title('Convergence of the Mean via OLS Regression gPC');
 hold off;
 %% Plot of the respective SD
@@ -160,7 +167,7 @@ plot(range,ones(size((range),2))*y_sd_tot);
 ylim([-0.1 0.25]);
 hold on;
 plot(y_sd,'b');
-xlabel('Amount of Samples'), ylabel('Y_SD_MC');
+xlabel('Amount of Samples'), ylabel('Y_{SD}_{MC}');
 title('Convergence of the SD via MC');
 hold off;
 
@@ -169,7 +176,7 @@ plot(range,ones(size((range),2))*y_sd_tot);
 ylim([-0.1 0.25]);
 hold on;
 plot(y_sd_quad,'r')
-xlabel('Amount of Samples'), ylabel('Y_SD_Quadrature');
+xlabel('Amount of Samples'), ylabel('Y_{SD}_{Quadrature}');
 title('Convergence of the SD via Quadrature gPC');
 
 figure,
@@ -177,7 +184,7 @@ plot(range,ones(size((range),2))*y_sd_tot);
 ylim([-0.1 0.25]);
 hold on;
 plot(range,y_sd_ols,'g');
-xlabel('Amount of Samples'), ylabel('Y_SD_OLS');
+xlabel('Amount of Samples'), ylabel('Y_{SD}_{OLS}');
 title('Convergence of the SD via OLS Regression gPC');
 
 
