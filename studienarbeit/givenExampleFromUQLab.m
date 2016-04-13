@@ -94,26 +94,22 @@ for j=1:size(X,1)
     y_mean_ols(j) = mean(Y_OLS(1:j,1));
     y_sd_ols(j) = sqrt(1/(length(y_mean_ols(j)-1))*sum(y_mean_ols(j(:))-...
         y_mean_tot_ols).^2);
-    if(j>3)
-         eoc_mean_mc(j) = ...
-         log10(...
-        abs((y_mean(j)-y_mean(j-1))/(y_mean(j-1)-y_mean(j-2))))...
-             /...
-             log10(...
-             abs((y_mean(j-1)-y_mean(j-2))/(y_mean(j-2)-y_mean(j-3))));
-%        eoc_mean_quad = log10(y_mean_quad(j)/y_mean_quad(j-1))/log10(j/(j-1));
-%        eoc_mean_ols = log10(y_mean_ols(j)/y_mean_ols(j-1))/log10(j/(j-1));
-%        
-%        eoc_sd_mc = log10(y_sd(j)/y_sd(j-1))/log10(j/(j-1));
-%        eoc_sd_quad = log10(y_sd_quad(j)/y_sd(j-1))/log10(j/(j-1));
-%        eoc_sd_ols = log10(y_sd_ols(j)/y_sd(j-1))/log10(j/(j-1));
-    end
+    
+    %     if(j>3)
+    %          eoc_mean_mc(j) = ...
+    %          log10(...
+    %         abs((y_mean(j)-y_mean(j-1))/(y_mean(j-1)-y_mean(j-2))))...
+    %              /...
+    %              log10(...
+    %              abs((y_mean(j-1)-y_mean(j-2))/(y_mean(j-2)-y_mean(j-3))));
+    %        eoc_mean_quad = log10(y_mean_quad(j)/y_mean_quad(j-1))/log10(j/(j-1));
+    %        eoc_mean_ols = log10(y_mean_ols(j)/y_mean_ols(j-1))/log10(j/(j-1));
+    %
+    %        eoc_sd_mc = log10(y_sd(j)/y_sd(j-1))/log10(j/(j-1));
+    %        eoc_sd_quad = log10(y_sd_quad(j)/y_sd(j-1))/log10(j/(j-1));
+    %        eoc_sd_ols = log10(y_sd_ols(j)/y_sd(j-1))/log10(j/(j-1));
+    %       end       
 end
-
-%% Calculation of the eoc (estimated order of convergence)
-
-
-
 
 %% Plot of the respective mean
 range = 1:size(X,1);
