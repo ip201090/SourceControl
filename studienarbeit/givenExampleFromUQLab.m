@@ -24,7 +24,7 @@ MetaOpts.PolyTypes = {'Legendre','Legendre','Legendre'};
 % Defaultly = standard trunction scheme with p = 3 ... we will stick to
 % that. Otherwise we could change it with MetaOpts.Degree = x; For the
 % sake of completeness we will denote it anyways
-MetaOpts.Degree = 3;
+MetaOpts.Degree = 6;
 
 % Specification of the input
 MetaOpts.Input = myInput;
