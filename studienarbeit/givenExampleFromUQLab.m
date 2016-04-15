@@ -56,17 +56,20 @@ Y_OLS = uq_evalModel(X,PCE_OLS);
 Y_full = uq_evalModel(X, myModel);
 
 figure;
-plot(X,Y_full,'b')
-xlabel('MC Samples'),ylabel('Y MC');
+histogram(Y_full,'FaceColor','b');
+% plot(X,Y_full,'b')
+% xlabel('MC Samples'),ylabel('Y MC');
 
 
 figure;
-plot(X,Y_Quadrature,'r');
-xlabel('MC Samples'),ylabel('Y Quadrature gPC');
+histogram(Y_Quadrature,'FaceColor','r');
+% plot(X,Y_Quadrature,'r');
+% xlabel('MC Samples'),ylabel('Y Quadrature gPC');
 
 figure;
-plot(X,Y_OLS,'g');
-xlabel('MC Sampel'),ylabel('Y OLS gPC');
+histogram(Y_OLS,'FaceColor','g');
+% plot(X,Y_OLS,'g');
+% xlabel('MC Sampel'),ylabel('Y OLS gPC');
 
 
 %% Calculation of the mean and the sd for y_full,y_quadrature and y_ols
