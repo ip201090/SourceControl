@@ -1,13 +1,15 @@
+%% Evaluation of the Ishigami Function using 3 uniformly distributed inputs
+
 %% Deleting everything before running the code
 clear variables;
-clc;
+%clc;
 close all;
 %% Initializing UQLab
 uqlab
 clearvars
 %% Creation of a Model
-global count;
-count = 0;
+% global count;
+% count = 0;
 MOpts.mFile = 'uq_ishigami' ;
 myModel = uq_createModel(MOpts);
 
@@ -28,10 +30,8 @@ MetaOpts.MetaType = 'PCE';
 MetaOpts.PolyTypes = {'Legendre','Legendre','Legendre'};
 
 
-% Defaultly = standard trunction scheme with p = 3 ... we will stick to
-% that. Otherwise we could change it with MetaOpts.Degree = x; For the
-% sake of completeness we will denote it anyways
-MetaOpts.Degree = 6;
+% Defaultly = standard trunction scheme with p = 3
+MetaOpts.Degree = 7;
 
 % Specification of the input
 MetaOpts.Input = myInput;
@@ -62,10 +62,11 @@ Y_OLS = uq_evalModel(X,PCE_OLS);
 % Reference value
 Y_full = uq_evalModel(X, myModel);
 
-% Histogram plots for the outputs respectively
-
+% Histogram plots for the outputs respectively. Depending on the MATLAB
+% version that is used, the command for the histogramms is different
 ver = version;
 
+% Matlab release 2014
 if ver(1) == '8'
     
     figure;
@@ -76,7 +77,7 @@ if ver(1) == '8'
     
     figure;
     hist(Y_OLS);
-    
+    % Matlab release 2016
 elseif ver(1) == '9'
     figure;
     histogram(Y_full,'FaceColor','b');
@@ -106,9 +107,9 @@ for j=1:size(X,1)
     y_mean(j) = mean(Y_full(1:j,1));
     y_sd(j) = sqrt(1/(length(y_mean(j)-1))*sum(y_mean(j(:))-y_mean_tot).^2);
     
-    y_mean_quad(j) = mean(Y_Quadrature(1:j,1));
-    y_sd_quad(j) = sqrt(1/(length(y_mean_quad(j)-1))*sum(y_mean_quad(j(:))- ...
-        y_mean_tot_quad).^2);
+        y_mean_quad(j) = mean(Y_Quadrature(1:j,1));
+        y_sd_quad(j) = sqrt(1/(length(y_mean_quad(j)-1))*sum(y_mean_quad(j(:))- ...
+            y_mean_tot_quad).^2);
     
     y_mean_ols(j) = mean(Y_OLS(1:j,1));
     y_sd_ols(j) = sqrt(1/(length(y_mean_ols(j)-1))*sum(y_mean_ols(j(:))-...
@@ -129,7 +130,6 @@ for j=1:size(X,1)
     %        eoc_sd_ols = log10(y_sd_ols(j)/y_sd(j-1))/log10(j/(j-1));
     %       end
 end
-
 
 %% Plot of the respective mean
 range = 1:size(X,1);
