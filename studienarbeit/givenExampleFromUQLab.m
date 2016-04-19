@@ -1,8 +1,13 @@
+%% Deleting everything before running the code
+clear variables;
+clc;
+close all;
 %% Initializing UQLab
 uqlab
 clearvars
 %% Creation of a Model
-
+global count;
+count = 0;
 MOpts.mFile = 'uq_ishigami' ;
 myModel = uq_createModel(MOpts);
 
@@ -11,6 +16,7 @@ for i = 1:3
     IOpts.Marginals(i).Type = 'Uniform' ;
     IOpts.Marginals(i).Parameters = [-pi, pi] ;
 end
+
 myInput = uq_createInput(IOpts);
 %% Setup of the PCE
 MetaOpts.Type = 'uq_metamodel';
@@ -20,6 +26,7 @@ MetaOpts.MetaType = 'PCE';
 % regarding their distribution. By now, only the Hermite and Legendre are
 % possible.
 MetaOpts.PolyTypes = {'Legendre','Legendre','Legendre'};
+
 
 % Defaultly = standard trunction scheme with p = 3 ... we will stick to
 % that. Otherwise we could change it with MetaOpts.Degree = x; For the
@@ -33,7 +40,7 @@ MetaOpts.Input = myInput;
 % Ishigami model that was created
 MetaOpts.FullModel = myModel;
 
-X = uq_getSample(10000,'MC');
+X = uq_getSample(10000,'MC',myInput);
 
 %% Calculating the coefficients with different methods
 
@@ -41,7 +48,7 @@ X = uq_getSample(10000,'MC');
 MetaOpts.Method = 'Quadrature';
 PCE_Quadrature = uq_createModel(MetaOpts);
 
-% % Used method: Least-Squares
+% Used method: Least-Squares
 MetaOpts.Method = 'OLS';
 MetaOpts.ExpDesign.NSamples = 10000;
 MetaOpts.ExpDesign.Sampling = 'MC';
@@ -55,23 +62,32 @@ Y_OLS = uq_evalModel(X,PCE_OLS);
 % Reference value
 Y_full = uq_evalModel(X, myModel);
 
-figure;
-histogram(Y_full,'FaceColor','b');
-% plot(X,Y_full,'b')
-% xlabel('MC Samples'),ylabel('Y MC');
+% Histogram plots for the outputs respectively
 
+ver = version;
 
-figure;
-histogram(Y_Quadrature,'FaceColor','r');
-% plot(X,Y_Quadrature,'r');
-% xlabel('MC Samples'),ylabel('Y Quadrature gPC');
-
-figure;
-histogram(Y_OLS,'FaceColor','g');
-% plot(X,Y_OLS,'g');
-% xlabel('MC Sampel'),ylabel('Y OLS gPC');
-
-
+if ver(1) == '8'
+    
+    figure;
+    hist(Y_full);
+    
+    figure;
+    hist(Y_Quadrature);
+    
+    figure;
+    hist(Y_OLS);
+    
+elseif ver(1) == '9'
+    figure;
+    histogram(Y_full,'FaceColor','b');
+    
+    figure;
+    histogram(Y_Quadrature,'FaceColor','r');
+    
+    figure;
+    histogram(Y_OLS,'FaceColor','g');
+    
+end
 %% Calculation of the mean and the sd for y_full,y_quadrature and y_ols
 y_mean = 1:size(X,1);
 y_sd = 1:size(X,1);
@@ -111,8 +127,9 @@ for j=1:size(X,1)
     %        eoc_sd_mc = log10(y_sd(j)/y_sd(j-1))/log10(j/(j-1));
     %        eoc_sd_quad = log10(y_sd_quad(j)/y_sd(j-1))/log10(j/(j-1));
     %        eoc_sd_ols = log10(y_sd_ols(j)/y_sd(j-1))/log10(j/(j-1));
-    %       end       
+    %       end
 end
+
 
 %% Plot of the respective mean
 range = 1:size(X,1);
@@ -139,6 +156,7 @@ figure;
 plot(range,ones(size((range),2))*y_mean_tot_quad);
 hold on;
 plot(y_mean_quad,'r');
+%plot(1:size(PCE_Quadrature.ExpDesign.X,1),PCE_Quadrature.ExpDesign.Y,'b');
 xlabel('Amount of Samples'),ylabel('Y_{Mean}_{Quadrature}');
 title('Convergence of the Mean via Quadrature gPC');
 hold off;
