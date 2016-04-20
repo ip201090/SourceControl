@@ -2,7 +2,7 @@
 
 %% Deleting everything before running the code
 clear variables;
-%clc;
+clc;
 close all;
 %% Initializing UQLab
 uqlab
@@ -44,17 +44,36 @@ X = uq_getSample(10000,'MC',myInput);
 
 %% Calculating the coefficients with different methods
 
-% Used method: Quadrature
+%% Calculation for the gPC using Quadrature
+
+% Used method: Quadrature (old way)
 MetaOpts.Method = 'Quadrature';
-% 
-% for k = 1:15
-%    MetaOpts.Degree = k; 
-%    PCE_Quadrature = uq_createModel(MetaOpts);
-%    numbSamples = PCE_Quadrature.ExpDesign.NSamples;
-%    mean_quad = PCE_Quadrature.PCE.Moments(1);
-% end
-% MetaOpts.Degree = 6;
+
+MetaOpts.Degree = 6;
 PCE_Quadrature = uq_createModel(MetaOpts);
+
+% new way
+numbSamples = zeros(1,10);
+mean_quad = zeros(1,10);
+sd_quad = zeros(1,10);
+degree = zeros(1,10);
+for k = 1:10
+    MetaOpts.Type = 'uq_metamodel';
+    MetaOpts.MetaType = 'PCE';
+    MetaOpts.PolyTypes = {'Legendre','Legendre','Legendre'};
+    MetaOpts.Method = 'Quadrature';
+    MetaOpts.Degree = k;
+    MetaOpts.Input = myInput;
+    MetaOpts.FullModel = myModel;
+    PCE_Quadrature_New = uq_createModel(MetaOpts);
+    numbSamples(k) = PCE_Quadrature_New.ExpDesign.NSamples;
+    mean_quad(k) = PCE_Quadrature_New.PCE.Moments.Mean;
+    sd_quad(k) = sqrt(PCE_Quadrature_New.PCE.Moments.Var);
+    degree(k) = k;
+end
+% MetaOpts.Degree = 6;
+% PCE_Quadrature = uq_createModel(MetaOpts);
+%% Creation of the Least-Square Model
 
 % Used method: Least-Squares
 MetaOpts.Method = 'OLS';
@@ -63,7 +82,7 @@ MetaOpts.ExpDesign.Sampling = 'MC';
 
 PCE_OLS = uq_createModel(MetaOpts);
 
-% Evaluation
+%% Evaluation of the Respective Method
 Y_Quadrature = uq_evalModel(X,PCE_Quadrature);
 Y_OLS = uq_evalModel(X,PCE_OLS);
 
@@ -79,22 +98,29 @@ if ver(1) == '8'
     
     figure;
     hist(Y_full);
+    drawnow
     
     figure;
     hist(Y_Quadrature);
+    drawnow
     
     figure;
     hist(Y_OLS);
+    drawnow
+    
     % Matlab release 2016
 elseif ver(1) == '9'
     figure;
     histogram(Y_full,'FaceColor','b');
+    drawnow
     
     figure;
     histogram(Y_Quadrature,'FaceColor','r');
+    drawnow
     
     figure;
     histogram(Y_OLS,'FaceColor','g');
+    drawnow
     
 end
 %% Calculation of the mean and the sd for y_full,y_quadrature and y_ols
@@ -115,9 +141,9 @@ for j=1:size(X,1)
     y_mean(j) = mean(Y_full(1:j,1));
     y_sd(j) = sqrt(1/(length(y_mean(j)-1))*sum(y_mean(j(:))-y_mean_tot).^2);
     
-        y_mean_quad(j) = mean(Y_Quadrature(1:j,1));
-        y_sd_quad(j) = sqrt(1/(length(y_mean_quad(j)-1))*sum(y_mean_quad(j(:))- ...
-            y_mean_tot_quad).^2);
+    y_mean_quad(j) = mean(Y_Quadrature(1:j,1));
+    y_sd_quad(j) = sqrt(1/(length(y_mean_quad(j)-1))*sum(y_mean_quad(j(:))- ...
+        y_mean_tot_quad).^2);
     
     y_mean_ols(j) = mean(Y_OLS(1:j,1));
     y_sd_ols(j) = sqrt(1/(length(y_mean_ols(j)-1))*sum(y_mean_ols(j(:))-...
@@ -149,6 +175,7 @@ xlabel('Amount of Samples'), ylabel('Mean of the Ishigami Output');
 legend('Mean of Y calc. with MC','Mean of Y calc. with Quadrature PC',...
     'Mean of Y calc. with OLS Regression');
 title('Means of the Ishigami Function calc. with Different Methods');
+drawnow
 
 figure;
 plot(range,ones(size((range),2))*y_mean_tot);
@@ -158,7 +185,7 @@ plot(y_mean,'b');
 xlabel('Amount of Samples'), ylabel('Y_{Mean}_{MC}');
 title('Convergence of the Mean via MC Simulation')
 hold off;
-
+drawnow
 
 figure;
 plot(range,ones(size((range),2))*y_mean_tot_quad);
@@ -168,6 +195,7 @@ plot(y_mean_quad,'r');
 xlabel('Amount of Samples'),ylabel('Y_{Mean}_{Quadrature}');
 title('Convergence of the Mean via Quadrature gPC');
 hold off;
+drawnow
 
 figure;
 plot(range,ones(size((range),2))*y_mean_tot_ols);
@@ -177,6 +205,7 @@ plot(y_mean_ols,'g');
 xlabel('Amount of Samples'),ylabel('Y_{Mean}_{OLS}');
 title('Convergence of the Mean via OLS Regression gPC');
 hold off;
+drawnow
 %% Plot of the respective SD
 
 figure;
@@ -186,6 +215,7 @@ xlabel('Amount of Samples'), ylabel('SD of the Ishigami Output');
 legend('SD of Y calc. with MC','SD of Y calc. with Quadrature PC',...
     'SD of Y calc. with OLS Regression');
 title('SDs of the Ishigami Function calc. with Different Methods');
+drawnow
 
 figure;
 plot(range,ones(size((range),2))*y_sd_tot);
@@ -195,6 +225,7 @@ plot(y_sd,'b');
 xlabel('Amount of Samples'), ylabel('Y_{SD}_{MC}');
 title('Convergence of the SD via MC');
 hold off;
+drawnow
 
 figure;
 plot(range,ones(size((range),2))*y_sd_tot);
@@ -203,6 +234,7 @@ hold on;
 plot(y_sd_quad,'r')
 xlabel('Amount of Samples'), ylabel('Y_{SD}_{Quadrature}');
 title('Convergence of the SD via Quadrature gPC');
+drawnow
 
 figure,
 plot(range,ones(size((range),2))*y_sd_tot);
@@ -211,6 +243,34 @@ hold on;
 plot(range,y_sd_ols,'g');
 xlabel('Amount of Samples'), ylabel('Y_{SD}_{OLS}');
 title('Convergence of the SD via OLS Regression gPC');
+drawnow
 
+
+%% New Plots for the Quadrature Method
+
+figure;
+plot(degree,mean_quad);
+xlabel('Polynomial Degree'), ylabel('Mean of Y_Quadrature');
+title('Convergence of the Mean via Quadrature gPC');
+drawnow
+
+figure;
+plot(numbSamples,mean_quad);
+xlabel('Amount of Smaples'),ylabel('Mean of Y_Quadrature');
+title('Convergence of the Mean via Quadrature gPC');
+drawnow
+
+
+figure;
+plot(degree,sd_quad);
+xlabel('Polynomial Degree'),ylabel('SD of Y_Quadrature');
+title('Convergence of the SD via Quadrature gPC');
+drawnow
+
+figure;
+plot(numbSamples,sd_quad);
+xlabel('Amount of Samples'),ylabel('SD of the Y_Quadrature');
+title('Convergence of the SD via Quadrature gPC');
+drawnow
 
 
