@@ -31,7 +31,7 @@ MetaOpts.PolyTypes = {'Legendre','Legendre','Legendre'};
 
 
 % Defaultly = standard trunction scheme with p = 3
-MetaOpts.Degree = 7;
+MetaOpts.Degree = 6;
 
 % Specification of the input
 MetaOpts.Input = myInput;
@@ -46,6 +46,14 @@ X = uq_getSample(10000,'MC',myInput);
 
 % Used method: Quadrature
 MetaOpts.Method = 'Quadrature';
+% 
+% for k = 1:15
+%    MetaOpts.Degree = k; 
+%    PCE_Quadrature = uq_createModel(MetaOpts);
+%    numbSamples = PCE_Quadrature.ExpDesign.NSamples;
+%    mean_quad = PCE_Quadrature.PCE.Moments(1);
+% end
+% MetaOpts.Degree = 6;
 PCE_Quadrature = uq_createModel(MetaOpts);
 
 % Used method: Least-Squares
