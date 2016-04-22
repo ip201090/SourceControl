@@ -176,7 +176,7 @@ range = 1:size(X,1);
 %Comparison Plot with all 3 methods
 figure;
 %subplot(4,1,1);
-plot(range,y_mean,'b',numbSamplesQuad,mean_quad,'r',range,y_mean_ols,'g'),   
+uq_plot(range,y_mean,'b',numbSamplesQuad,mean_quad,'r',range,y_mean_ols,'g'),   
 %ylim([2 6]);
 xlabel('Amount of Samples'), ylabel('Mean of the Ishigami Output');
 legend('Mean of Y calc. with MC',...
@@ -188,10 +188,10 @@ drawnow
 % Plot for MC
 figure;
 %subplot(4,1,2);
-plot(range,ones(size((range),2))*y_mean_tot);
+uq_plot(range,ones(size((range),2))*y_mean_tot);
 %ylim([3.25 3.75]);
 hold on;
-plot(y_mean,'b');
+uq_plot(y_mean,'b');
 xlabel('Amount of Samples'), ylabel('Y_{Mean}_{MC}');
 title('Convergence of the Mean via MC Simulation')
 hold off;
@@ -200,7 +200,7 @@ drawnow
 % Plot for Quadrature Method
 figure;
 %subplot(4,1,3);
-plot(numbSamplesQuad,mean_quad,'r');
+uq_plot(numbSamplesQuad,mean_quad,'r');
 xlabel('Amount of Samples'), ylabel('Mean of Y_Quadrature');
 title('Convergence of the Mean via Quadrature gPC');
 drawnow
@@ -208,11 +208,11 @@ drawnow
 % Plot for OLS Regression
 figure;
 %subplot(4,1,4);
-plot(range,ones(size((range),2))*y_mean_tot_ols);
+uq_plot(range,ones(size((range),2))*y_mean_tot_ols);
 %plot(range,mean_ols);
 %ylim([2 4]);
 hold on;
-plot(y_mean_ols,'g');
+uq_plot(y_mean_ols,'g');
 xlabel('Amount of Samples'),ylabel('Y_{Mean}_{OLS}');
 title('Convergence of the Mean via OLS Regression gPC');
 hold off;
@@ -222,7 +222,7 @@ drawnow
 %Comparison Plot with all 3 methods
 figure;
 %subplot(4,1,1);
-plot(range,y_sd,'b',numbSamplesQuad,sd_quad,'r',range,y_sd_ols,'g');
+uq_plot(range,y_sd,'b',numbSamplesQuad,sd_quad,'r',range,y_sd_ols,'g');
     
 %ylim([-0.1 0.5])
 xlabel('Amount of Samples'), ylabel('SD of the Ishigami Output');
@@ -234,7 +234,7 @@ drawnow
 % Plot for MC
 figure;
 %subplot(4,1,2);
-plot(range,ones(size((range),2))*y_sd_tot);
+uq_plot(range,ones(size((range),2))*y_sd_tot);
 %ylim([-0.1 0.25]);
 hold on;
 plot(y_sd,'b');
@@ -246,7 +246,7 @@ drawnow
 % Plot for Quadrature Method
 figure;
 %subplot(4,1,3);
-plot(numbSamplesQuad,sd_quad,'r');
+uq_plot(numbSamplesQuad,sd_quad,'r');
 xlabel('Amount of Samples'),ylabel('SD of the Y_Quadrature');
 title('Convergence of the SD via Quadrature gPC');
 drawnow
@@ -254,11 +254,11 @@ drawnow
 % Plot for OLS Regression
 figure;
 %subplot(4,1,4);
-plot(range,ones(size((range),2))*y_sd_tot);
+uq_plot(range,ones(size((range),2))*y_sd_tot);
 %plot(range,sd_mean);
 %ylim([-0.1 0.25]);
 hold on;
-plot(range,y_sd_ols,'g');
+uq_plot(range,y_sd_ols,'g');
 xlabel('Amount of Samples'), ylabel('Y_{SD}_{OLS}');
 title('Convergence of the SD via OLS Regression gPC');
 drawnow
@@ -268,19 +268,20 @@ drawnow
 
 figure;
 subplot(1,3,1);
-plot(degree,mean_quad,'r');
+uq_plot(degree,mean_quad,'r');
 xlabel('Polynomial Degree'), ylabel('Mean of Y_Quadrature');
 title('Convergence of the Mean via Quadrature gPC');
 drawnow
 
 subplot(1,3,2);
-plot(degree,sd_quad,'r');
+uq_plot(degree,sd_quad,'r');
 xlabel('Polynomial Degree'),ylabel('SD of Y_Quadrature');
 title('Convergence of the SD via Quadrature gPC');
 drawnow
 
+%figure;
 subplot(1,3,3);
-semilogy(degree,error_quad,'r');
+uq_plot(degree,log10(error_quad),'r');
 xlabel('Degree'),ylabel('log(error)');
 title('Quadrature Error');
 
@@ -288,22 +289,22 @@ title('Quadrature Error');
 
 figure;
 subplot(1,3,1);
-plot(degreeOLS,mean_ols,'g');
+uq_plot(degreeOLS,mean_ols,'g');
 xlabel('Degrees'),ylabel('Mean of OLS');
 drawnow
 
 subplot(1,3,2);
-plot(degreeOLS,sd_ols,'g');
+uq_plot(degreeOLS,sd_ols,'g');
 xlabel('Degrees'),ylabel('SD of OLS');
 drawnow
 
 subplot(1,3,3);
-semilogy(degreeOLS,error_ols_D,'g');
+uq_plot(degreeOLS,log10(error_ols_D),'g');
 xlabel('Degree'),ylabel('log(error)');
 title('OLS Regression Error Depending on the Polynomial Degree');
 
 figure;
-semilogy(degree,error_quad,'r',degreeOLS,error_ols_D,'g');
+uq_plot(degree,log10(error_quad),'r',degreeOLS,log10(error_ols_D),'g');
 xlabel('Polynomial Degree'),ylabel('Log(Error)');
 title(...
     'Comparision of the Error between the Gaussian Quadrature and the OLS Regression ');
