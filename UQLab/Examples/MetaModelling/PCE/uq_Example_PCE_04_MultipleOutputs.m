@@ -12,7 +12,7 @@ rng(100) % set the random seed to a fixed value for repeatable results
 uq_figure; 
 [I,map] = imread('SimplySupportedBeam.png');
 imshow(I,map);
-truesize([300 400]);
+%truesize([300 400]);
 %% 
 % The deflection of the beam at any longitudinal coordinate x
 % is given by:

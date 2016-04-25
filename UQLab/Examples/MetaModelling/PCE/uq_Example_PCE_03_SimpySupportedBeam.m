@@ -16,7 +16,7 @@ rng(100) % also set the random seed to a fixed value for repeatable results
 uq_figure; 
 [I,map] = imread('SimplySupportedBeam.png');
 imshow(I,map);
-truesize([300 400]);
+%truesize([300 400]);
 %%
 % The midspan deflection of the beam is given by 
 %
