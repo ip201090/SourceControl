@@ -110,7 +110,7 @@ title('Quadrature Error');
 drawnow
 
 subplot(2,1,2);
-uq_plot(numbSamplesQuad,log10(error_quad),rm');
+uq_plot(numbSamplesQuad,log10(error_quad),'r');
 xlabel('Amount of Samples'),ylabel('log(error)');
 title('Quadrature Error');
 drawnow

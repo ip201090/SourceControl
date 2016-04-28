@@ -102,6 +102,7 @@ figure;
 subplot(2,1,1);
 uq_plot(degreeOLS,log10(error_ols),'g');
 xlabel('Degree'),ylabel('log(error)');
+xlim([0 15]);
 title('OLS Regression Error Depending on the Polynomial Degree');
 drawnow
 
