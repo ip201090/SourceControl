@@ -19,22 +19,11 @@ end
 
 myInput = uq_createInput(IOpts);
 
-%Obtaining a reference value, which will be computed just once and then
-%hard coded
-% X_ref = uq_getSample(1000000,'MC',myInput);
-% Y_ref = uq_evalModel(X_ref,myModel);
-% mean_ref = 1:size(X_ref,1);
-% std_ref = 1:size(X_ref,1);
-% for j=1:size(X_ref,1)
-%     mean_ref(j) = mean(Y_ref(1:j,1));
-%     std_ref (j) = std(Y_ref(1:j,1));
-% end
-% mean_ref(1000000)
-% mean_ref_max = 3.5003;
-% std_ref_max = 3.7227;
-% 
+%Reference values
+mean_ref = 3.4949;
+std_ref = 3.7185;
 
-range = 100:100:100000;
+range = 1:10000;
 temp = length(range);
 %X = zeros(1,temp);
 %Y = zeros(1,temp);
@@ -42,16 +31,32 @@ y_mean = zeros(1,temp);
 y_std = zeros(1,temp);
 
 
-for k=100:100:100000
+for k=1:10000
     X = uq_getSample(k,'MC',myInput);
     Y = uq_evalModel(X,myModel);
-    y_mean(k/100) = mean(Y);
-    y_std(k/100) = std(Y);
-
+    y_mean(k) = mean(Y);
+    y_std(k) = std(Y);
 end
 
-figure;
-plot(range,y_mean,'b');
+mean_rel_error(:) = abs(y_mean(:)-mean_ref)./mean_ref;
+std_rel_error(:) = abs(y_std(:)-std_ref)./std_ref;
 
 figure;
-plot(range,y_std,'r');
+uq_plot(range,y_mean,'b');
+xlabel('Amount of Sample Points'),ylabel('Mean of MC Analysis');
+title('Mean of MC Analysis');
+
+figure;
+uq_plot(range,y_std,'b');
+xlabel('Amount of Sample Points'),ylabel('SD of MC Analysis');
+title('SD of MC Analysis')
+
+figure;
+uq_plot(range,mean_rel_error);
+xlabel('Amount of Sample Points'),ylabel('rel. Mean Error');
+title('Rel. Mean Error');
+
+figure;
+uq_plot(range,std_rel_error);
+xlabel('Amount of Sample Points'),ylabel('rel. SD Error');
+title('Rel. SD Error');
