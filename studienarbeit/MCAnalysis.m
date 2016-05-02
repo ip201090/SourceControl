@@ -58,7 +58,7 @@ ver = version;
 if ver(1) == '8'
     
     figure;
-    hist(Y);
+    hist(Y,'FaceColor','b');
     title('MC ');
     drawnow
 

@@ -63,8 +63,8 @@ end
 %% %% %% Evaluation of the LARS Method
 % This evaluation you actually do not need, just in case you want to
 % calculate the quadrature output for a particular sample set
-X = uq_getSample(6300,'MC',myInput);
-Y_LARS = uq_evalModel(X,PCE_LARS);
+%X = uq_getSample(6300,'MC',myInput);
+%Y_LARS = uq_evalModel(X,PCE_LARS);
 
 %Histogram for the output. Depending on the MATLAB version that is used the
 %command for the histogramms is different
@@ -74,15 +74,20 @@ ver = version;
 if ver(1) == '8'
     
     figure;
-    hist(Y_LARS);
+    hist(PCE_LARS.ExpDesign.Y,'FaceColor','c');
     title('LARS');
     drawnow
 
 %Matlab release 2016 
 elseif ver(1) == '9'
     
+%     figure;
+%     histogram(Y_LARS,'FaceColor','c');
+%     title('LARS');
+%     drawnow
+    
     figure;
-    histogram(Y_LARS,'FaceColor','c');
+    histogram(PCE_LARS.ExpDesign.Y,'FaceColor','c');
     title('LARS');
     drawnow
 end

@@ -64,8 +64,8 @@ end
 %% %% Evaluation of the Sparse Quadrature Method
 % This evaluation you actually do not need, just in case you want to
 % calculate the quadrature output for a particular sample set
-X = uq_getSample(6300,'MC',myInput);
-Y_SparseQuad = uq_evalModel(X,PCE_QuadratureSparse);
+% X = uq_getSample(6300,'MC',myInput);
+% Y_SparseQuad = uq_evalModel(X,PCE_QuadratureSparse);
 
 %Histogram for the output. Depending on the MATLAB version that is used the
 %command for the histogramms is different
@@ -75,16 +75,16 @@ ver = version;
 if ver(1) == '8'
     
     figure;
-    hist(Y_SparseQuad);
-    title('OLS Regression');
+    hist(PCE_QuadratureSparse.ExpDesign.Y,'FaceColor','m');
+    title('Sparse Quadrature Method');
     drawnow
 
 %Matlab release 2016 
 elseif ver(1) == '9'
     
     figure;
-    histogram(Y_SparseQuad,'FaceColor','m');
-    title('OLS Regression');
+    histogram(PCE_QuadratureSparse.ExpDesign.Y,'FaceColor','m');
+    title('Sparse Quadrature Method');
     drawnow
 end
 

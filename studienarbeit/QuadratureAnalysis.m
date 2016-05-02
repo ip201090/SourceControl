@@ -38,7 +38,7 @@ MetaOpts.FullModel = myModel;
 
 % Creation of sample set, in case you want to test the quadrature method
 % for this particular sample
-X = uq_getSample(6300,'MC',myInput);
+%X = uq_getSample(6300,'MC',myInput);
 
 
 %% Creation and Calculation of a gPC Quadrature Model
@@ -72,7 +72,7 @@ end
 
 % This evaluation you actually do not need, just in case you want to
 % calculate the quadrature output for a particular sample set
-Y_Quadrature = uq_evalModel(X,PCE_Quadrature);
+%Y_Quadrature = uq_evalModel(X,PCE_Quadrature);
 
 %Histogram for the output. Depending on the MATLAB version that is used the
 %command for the histogramms is different
@@ -82,15 +82,20 @@ ver = version;
 if ver(1) == '8'
     
     figure;
-    hist(Y_Quadrature);
+    hist(PCE_Quadrature.ExpDesign.Y,'FaceColor','r');
     title('Quadrature Method');
     drawnow
 
 %Matlab release 2016 
 elseif ver(1) == '9'
     
+%     figure;
+%     histogram(Y_Quadrature,'FaceColor','r');
+%     title('Quadrature Method');
+%     drawnow
+
     figure;
-    histogram(Y_Quadrature,'FaceColor','r');
+    histogram(PCE_Quadrature.ExpDesign.Y,'FaceColor','r');
     title('Quadrature Method');
     drawnow
 end

@@ -72,8 +72,8 @@ end
 %% Evaluation of the OLS Regression Method
 % This evaluation you actually do not need, just in case you want to
 % calculate the quadrature output for a particular sample set
-X = uq_getSample(6300,'MC',myInput);
-Y_OLS = uq_evalModel(X,PCE_OLS);
+% X = uq_getSample(6300,'MC',myInput);
+% Y_OLS = uq_evalModel(X,PCE_OLS);
 
 %Histogram for the output. Depending on the MATLAB version that is used the
 %command for the histogramms is different
@@ -83,15 +83,20 @@ ver = version;
 if ver(1) == '8'
     
     figure;
-    hist(Y_OLS);
+    hist(PCE_OLS.ExpDesign.Y,'FaceColor','g');
     title('OLS Regression');
     drawnow
 
 %Matlab release 2016 
 elseif ver(1) == '9'
     
+%     figure;
+%     histogram(Y_OLS,'FaceColor','g');
+%     title('OLS Regression');
+%     drawnow
+
     figure;
-    histogram(Y_OLS,'FaceColor','g');
+    histogram(PCE_OLS.ExpDesign.Y,'FaceColor','g');
     title('OLS Regression');
     drawnow
 end
