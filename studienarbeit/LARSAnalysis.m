@@ -42,8 +42,6 @@ MetaOpts.Method = 'LARS';
 %MetaOpts.LARS.LarsEarlyStop = 'False';
 MetaOpts.ExpDesign.Sampling = 'MC';
 
-
-
 numbSamplesLARS = zeros(1,15);
 mean_lars = zeros(1,15);
 sd_lars = zeros(1,15);
@@ -60,6 +58,33 @@ for k =1:15
    error_lars(k) = PCE_LARS.Error.LOO;
    degreeLARS(k) = k;
    
+end
+
+%% %% %% Evaluation of the LARS Method
+% This evaluation you actually do not need, just in case you want to
+% calculate the quadrature output for a particular sample set
+X = uq_getSample(6300,'MC',myInput);
+Y_LARS = uq_evalModel(X,PCE_LARS);
+
+%Histogram for the output. Depending on the MATLAB version that is used the
+%command for the histogramms is different
+ver = version;
+
+% Matlab release 2014
+if ver(1) == '8'
+    
+    figure;
+    hist(Y_LARS);
+    title('LARS');
+    drawnow
+
+%Matlab release 2016 
+elseif ver(1) == '9'
+    
+    figure;
+    histogram(Y_LARS,'FaceColor','c');
+    title('LARS');
+    drawnow
 end
 
 %% Plots for the LARS 

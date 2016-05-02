@@ -23,6 +23,9 @@ myInput = uq_createInput(IOpts);
 mean_ref = 3.4949;
 std_ref = 3.7185;
 
+
+%% Evaluation of the Ishigami Function
+
 range = 1:10000;
 temp = length(range);
 %X = zeros(1,temp);
@@ -38,8 +41,35 @@ for k=1:10000
     y_std(k) = std(Y);
 end
 
+
+
 mean_rel_error(:) = abs(y_mean(:)-mean_ref)./mean_ref;
 std_rel_error(:) = abs(y_std(:)-std_ref)./std_ref;
+
+
+%% Plotting the Results
+
+
+%Histogram for the output. Depending on the MATLAB version that is used the
+%command for the histogramms is different
+ver = version;
+
+% Matlab release 2014
+if ver(1) == '8'
+    
+    figure;
+    hist(Y);
+    title('MC ');
+    drawnow
+
+%Matlab release 2016 
+elseif ver(1) == '9'
+    
+    figure;
+    histogram(Y,'FaceColor','b');
+    title('MC');
+    drawnow
+end
 
 figure;
 uq_plot(range,y_mean,'b');
