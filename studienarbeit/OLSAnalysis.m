@@ -83,7 +83,7 @@ ver = version;
 if ver(1) == '8'
     
     figure;
-    hist(PCE_OLS.ExpDesign.Y,'FaceColor','g');
+    hist(PCE_OLS.ExpDesign.Y);
     title('OLS Regression');
     drawnow
 

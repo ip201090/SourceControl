@@ -82,7 +82,7 @@ ver = version;
 if ver(1) == '8'
     
     figure;
-    hist(PCE_Quadrature.ExpDesign.Y,'FaceColor','r');
+    hist(PCE_Quadrature.ExpDesign.Y);
     title('Quadrature Method');
     drawnow
 

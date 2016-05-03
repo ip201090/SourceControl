@@ -75,7 +75,7 @@ ver = version;
 if ver(1) == '8'
     
     figure;
-    hist(PCE_QuadratureSparse.ExpDesign.Y,'FaceColor','m');
+    hist(PCE_QuadratureSparse.ExpDesign.Y);
     title('Sparse Quadrature Method');
     drawnow
 

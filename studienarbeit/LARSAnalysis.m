@@ -74,18 +74,13 @@ ver = version;
 if ver(1) == '8'
     
     figure;
-    hist(PCE_LARS.ExpDesign.Y,'FaceColor','c');
+    hist(PCE_LARS.ExpDesign.Y);
     title('LARS');
     drawnow
 
 %Matlab release 2016 
 elseif ver(1) == '9'
-    
-%     figure;
-%     histogram(Y_LARS,'FaceColor','c');
-%     title('LARS');
-%     drawnow
-    
+   
     figure;
     histogram(PCE_LARS.ExpDesign.Y,'FaceColor','c');
     title('LARS');
