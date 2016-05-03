@@ -1,5 +1,6 @@
 function Y = uq_ishigami(X,P)
-% Simple version of the ishigami function. X is is a sample of N of column vectors
+% Simple version of the ishigami function. X is is a sample of N of column  
+% vectors
 
 switch nargin
     case 1
