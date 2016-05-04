@@ -48,8 +48,8 @@ if ver(1) == '8'
     std_rel_error = zeros(1,temp);
 end
 
-mean_rel_error(:) = abs(y_mean(:)-mean_ref)./mean_ref;
-std_rel_error(:) = abs(y_std(:)-std_ref)./std_ref;
+mean_rel_error(:) = abs(y_mean(:)-mean_ref)/mean_ref;
+std_rel_error(:) = abs(y_std(:)-std_ref)/std_ref;
 
 
 %% Plotting the Results
