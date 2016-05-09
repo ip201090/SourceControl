@@ -84,7 +84,7 @@ if ver(1) == '8'
     
     figure;
     hist(PCE_OLS.ExpDesign.Y);
-    title('OLS Regression');
+    %title('OLS Regression');
     drawnow
 
 %Matlab release 2016 
@@ -97,7 +97,7 @@ elseif ver(1) == '9'
 
     figure;
     histogram(PCE_OLS.ExpDesign.Y,'FaceColor','g');
-    title('OLS Regression');
+    %title('OLS Regression');
     drawnow
 end
 
@@ -105,43 +105,46 @@ end
 %% Plots for the OLS Regression Method
 
 figure;
-subplot(2,1,1);
+%subplot(2,1,1);
 uq_plot(degreeOLS,mean_ols,'g');
 xlabel('Degrees'),ylabel('Mean');
-title('Mean Convergence in Dependence on the Pol. Degree');
+%title('Mean Convergence in Dependence on the Pol. Degree');
 drawnow
 
-subplot(2,1,2);
+figure;
+%subplot(2,1,2);
 uq_plot(numbOLSSamp,mean_ols,'g');
 xlabel('Amount of Samples'),ylabel('Mean');
-title('Mean Convergence in Dependence on the Samp. Points');
+%title('Mean Convergence in Dependence on the Samp. Points');
 drawnow
 
 
 figure;
-subplot(2,1,1);
+%subplot(2,1,1);
 uq_plot(degreeOLS,sd_ols,'g');
 xlabel('Degrees'),ylabel('SD of OLS');
-title('SD Convergence in Dependence on the Pol. Degree');
-drawnow
-
-subplot(2,1,2);
-uq_plot(numbOLSSamp,sd_ols,'g');
-xlabel('Amount of Samples'),ylabel('SD');
-title('SD Convergence in Dependence on the Samp. Points');
+%title('SD Convergence in Dependence on the Pol. Degree');
 drawnow
 
 figure;
-subplot(2,1,1);
+%subplot(2,1,2);
+uq_plot(numbOLSSamp,sd_ols,'g');
+xlabel('Amount of Samples'),ylabel('SD');
+%title('SD Convergence in Dependence on the Samp. Points');
+drawnow
+
+figure;
+%subplot(2,1,1);
 uq_plot(degreeOLS,log10(error_ols),'g');
 xlabel('Degree'),ylabel('log(error)');
 xlim([0 15]);
-title('OLS Regression Error Depending on the Polynomial Degree');
+%title('OLS Regression Error Depending on the Polynomial Degree');
 drawnow
 
-subplot(2,1,2);
+figure;
+%subplot(2,1,2);
 uq_plot(numbOLSSamp,log10(error_ols),'g');
 xlabel('Amount of Samples'),ylabel('log(error)');
-title('OLS Regression Error Depending on the Polynomial Degree');
+%title('OLS Regression Error Depending on the Polynomial Degree');
 drawnow
 

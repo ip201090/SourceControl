@@ -63,7 +63,7 @@ if ver(1) == '8'
     
     figure;
     hist(Y);
-    title('MC');
+    %title('MC');
     drawnow
     
     %Matlab release 2016
@@ -71,26 +71,26 @@ elseif ver(1) == '9'
     
     figure;
     histogram(Y,'FaceColor','b');
-    title('MC');
+    %title('MC');
     drawnow
 end
 
 figure;
 uq_plot(range,y_mean,'b');
 xlabel('Amount of Sample Points'),ylabel('Mean of MC Analysis');
-title('Mean of MC Analysis');
+%title('Mean of MC Analysis');
 
 figure;
 uq_plot(range,y_std,'b');
 xlabel('Amount of Sample Points'),ylabel('SD of MC Analysis');
-title('SD of MC Analysis')
+%title('SD of MC Analysis')
 
 figure;
-uq_plot(range,mean_rel_error);
+uq_plot(range,log10(mean_rel_error));
 xlabel('Amount of Sample Points'),ylabel('rel. Mean Error');
-title('Rel. Mean Error');
+%title('Rel. Mean Error');
 
 figure;
-uq_plot(range,std_rel_error);
+uq_plot(range,log10(std_rel_error));
 xlabel('Amount of Sample Points'),ylabel('rel. SD Error');
-title('Rel. SD Error');
+%title('Rel. SD Error');

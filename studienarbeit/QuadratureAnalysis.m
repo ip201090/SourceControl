@@ -83,7 +83,7 @@ if ver(1) == '8'
     
     figure;
     hist(PCE_Quadrature.ExpDesign.Y);
-    title('Quadrature Method');
+    %title('Quadrature Method');
     drawnow
 
 %Matlab release 2016 
@@ -96,7 +96,7 @@ elseif ver(1) == '9'
 
     figure;
     histogram(PCE_Quadrature.ExpDesign.Y,'FaceColor','r');
-    title('Quadrature Method');
+    %title('Quadrature Method');
     drawnow
 end
 
@@ -106,37 +106,40 @@ figure;
 subplot(2,1,1);
 uq_plot(degree,mean_quad,'r');
 xlabel('Polynomial Degree'), ylabel('Mean');
-title('Mean Convergence in Dependence on the Pol. Degree');
+%title('Mean Convergence in Dependence on the Pol. Degree');
 drawnow
 
-subplot(2,1,2);
+figure;
+%subplot(2,1,2);
 uq_plot(numbSamplesQuad,mean_quad,'r');
 xlabel('Amount of Samples'),ylabel('Mean');
-title('Mean Convergence in Dependence on the Samp. Points');
+%title('Mean Convergence in Dependence on the Samp. Points');
 drawnow
 
 figure;
-subplot(2,1,1);
+%subplot(2,1,1);
 uq_plot(degree,sd_quad,'r');
 xlabel('Polynomial Degree'),ylabel('SD');
-title('SD Convergence in Dependence on the Pol. Degree');
-drawnow
-
-subplot(2,1,2);
-uq_plot(numbSamplesQuad,sd_quad,'r');
-xlabel('Amount of Samples'),ylabel('SD');
-title('SD Convergence in Dependence on the Samp. Points')
+%title('SD Convergence in Dependence on the Pol. Degree');
 drawnow
 
 figure;
-subplot(2,1,1);
-uq_plot(degree,log10(error_quad),'r');
-xlabel('Degree'),ylabel('log(error)');
-title('Quadrature Error');
+%subplot(2,1,2);
+uq_plot(numbSamplesQuad,sd_quad,'r');
+xlabel('Amount of Samples'),ylabel('SD');
+%title('SD Convergence in Dependence on the Samp. Points')
 drawnow
 
-subplot(2,1,2);
+figure;
+%subplot(2,1,1);
+uq_plot(degree,log10(error_quad),'r');
+xlabel('Degree'),ylabel('log(error)');
+%title('Quadrature Error');
+drawnow
+
+figure;
+%subplot(2,1,2);
 uq_plot(numbSamplesQuad,log10(error_quad),'r');
 xlabel('Amount of Samples'),ylabel('log(error)');
-title('Quadrature Error');
+%title('Quadrature Error');
 drawnow

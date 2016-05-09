@@ -75,7 +75,7 @@ if ver(1) == '8'
     
     figure;
     hist(PCE_LARS.ExpDesign.Y);
-    title('LARS');
+    %title('LARS');
     drawnow
 
 %Matlab release 2016 
@@ -83,48 +83,51 @@ elseif ver(1) == '9'
    
     figure;
     histogram(PCE_LARS.ExpDesign.Y,'FaceColor','c');
-    title('LARS');
+    %title('LARS');
     drawnow
 end
 
 %% Plots for the LARS 
 
 figure;
-subplot(2,1,1);
+%subplot(2,1,1);
 uq_plot(degreeLARS,mean_lars,'c');
 xlabel('Degrees'),ylabel('Mean of LARS');
-title('Mean Convergence in Dependence on the Pol. Degree');
+%title('Mean Convergence in Dependence on the Pol. Degree');
 drawnow
 
-subplot(2,1,2);
+figure;
+%subplot(2,1,2);
 uq_plot(numbSamplesLARS,mean_lars,'c');
 xlabel('Amount of Samples'),ylabel('Mean of LARS');
-
+drawnow
 
 figure;
-subplot(2,1,1);
+%subplot(2,1,1);
 uq_plot(degreeLARS,sd_lars,'c');
 xlabel('Degrees'),ylabel('SD of LARS');
-title('SD Convergence in Dependence on the Pol. Degree');
-drawnow
-
-subplot(2,1,2);
-uq_plot(numbSamplesLARS,sd_lars,'c');
-xlabel('Amount of Samples'),ylabel('SD of LARS');
-title('SD Convergence in Dependence on the Amount of Samples');
+%title('SD Convergence in Dependence on the Pol. Degree');
 drawnow
 
 figure;
-subplot(2,1,1);
-uq_plot(degreeLARS,log10(error_lars),'c');
-xlabel('Degrees'),ylabel('log(Error)');
-title('LARS Error');
+%subplot(2,1,2);
+uq_plot(numbSamplesLARS,sd_lars,'c');
+xlabel('Amount of Samples'),ylabel('SD of LARS');
+%title('SD Convergence in Dependence on the Amount of Samples');
 drawnow
 
-subplot(2,1,2);
+figure;
+%subplot(2,1,1);
+uq_plot(degreeLARS,log10(error_lars),'c');
+xlabel('Degrees'),ylabel('log(Error)');
+%title('LARS Error');
+drawnow
+
+figure;
+%subplot(2,1,2);
 uq_plot(numbSamplesLARS,log10(error_lars),'c');
 xlabel('Amount of Samples'),ylabel('log(Error)');
-title('LARS Error');
+%title('LARS Error');
 drawnow
 
 
