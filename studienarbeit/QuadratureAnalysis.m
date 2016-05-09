@@ -103,7 +103,7 @@ end
 %% Plots for the Quadrature Method
 
 figure;
-subplot(2,1,1);
+%subplot(2,1,1);
 uq_plot(degree,mean_quad,'r');
 xlabel('Polynomial Degree'), ylabel('Mean');
 %title('Mean Convergence in Dependence on the Pol. Degree');
