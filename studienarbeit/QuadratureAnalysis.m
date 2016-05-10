@@ -132,14 +132,20 @@ drawnow
 
 figure;
 %subplot(2,1,1);
-uq_plot(degree,log10(error_quad),'r');
-xlabel('Degree'),ylabel('log(error)');
+uq_plot(degree,error_quad,'r');
+xlabel('Polynomial Degree'),ylabel('Error');
 %title('Quadrature Error');
 drawnow
 
+ha1 = gca;
+set(ha1,'yscale','log');
+
 figure;
 %subplot(2,1,2);
-uq_plot(numbSamplesQuad,log10(error_quad),'r');
-xlabel('Amount of Samples'),ylabel('log(error)');
+uq_plot(numbSamplesQuad,error_quad,'r');
+xlabel('Amount of Samples'),ylabel('Error');
 %title('Quadrature Error');
 drawnow
+
+ha2 = gca;
+set(ha2,'yscale','log');

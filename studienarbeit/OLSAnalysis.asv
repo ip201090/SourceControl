@@ -107,7 +107,7 @@ end
 figure;
 %subplot(2,1,1);
 uq_plot(degreeOLS,mean_ols,'g');
-xlabel('Polynomial Degree'),ylabel('Mean');
+xlabel('Degrees'),ylabel('Mean');
 %title('Mean Convergence in Dependence on the Pol. Degree');
 drawnow
 
@@ -122,7 +122,7 @@ drawnow
 figure;
 %subplot(2,1,1);
 uq_plot(degreeOLS,sd_ols,'g');
-xlabel('Polynomial Degree'),ylabel('SD');
+xlabel('Degrees'),ylabel('SD of OLS');
 %title('SD Convergence in Dependence on the Pol. Degree');
 drawnow
 
@@ -135,21 +135,18 @@ drawnow
 
 figure;
 %subplot(2,1,1);
-uq_plot(degreeOLS,error_ols,'g');
-xlabel('Polynomial Degree'),ylabel('Error');
-%xlim([0 15]);
+uq_plot(degreeOLS,log10(error_ols),'g');
+xlabel('Degree'),ylabel('log(error)');
+xlim([0 15]);
 %title('OLS Regression Error Depending on the Polynomial Degree');
 drawnow
-
-ha1 = gca;
-set(ha1,'yscale','log');
 
 figure;
 %subplot(2,1,2);
-uq_plot(numbOLSSamp,error_ols,'g');
-xlabel('Amount of Samples'),ylabel('Error');
+uq_plot(numbOLSSamp,log10(error_ols),'g');
+xlabel('Amount of Samples'),ylabel('log(error)');
 %title('OLS Regression Error Depending on the Polynomial Degree');
 drawnow
 
-ha2 = gca;
-set(ha2,'yscale','log');
+% figure;
+% uq_plot(numbOLSSamp,error_ols);

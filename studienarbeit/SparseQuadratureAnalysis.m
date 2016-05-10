@@ -94,7 +94,7 @@ end
 figure;
 %subplot(2,1,1);
 uq_plot(degreeSparse,mean_quad_sparse,'m');
-xlabel('Degrees'),ylabel('Mean');
+xlabel('Polynomial Degree'),ylabel('Mean');
 %title('Mean Convergence in Dependence on the Pol. Degree');
 drawnow
 
@@ -108,7 +108,7 @@ drawnow
 figure;
 %subplot(2,1,1);
 uq_plot(degreeSparse,sd_quad_sparse,'m');
-xlabel('Degrees'),ylabel('SD');
+xlabel('Polynomial Degree'),ylabel('SD');
 %title('SD Convergence in Dependence on the Pol. Degree');
 drawnow
 
@@ -122,14 +122,20 @@ drawnow
 
 figure;
 %subplot(2,1,1);
-uq_plot(degreeSparse,log10(error_quad_sparse),'m');
-xlabel('Degrees'),ylabel('log(Error)');
+uq_plot(degreeSparse,error_quad_sparse,'m');
+xlabel('Polynomial Degree'),ylabel('Error');
 %title('Sparse Quadrature Error');
 drawnow
 
+ha1 = gca;
+set(ha1,'yscale','log');
+
 figure;
 %subplot(2,1,2);
-uq_plot(numbSamplesQuadSparse,log10(error_quad_sparse),'m');
-xlabel('Amount of Samples'),ylabel('log(error)');
+uq_plot(numbSamplesQuadSparse,error_quad_sparse,'m');
+xlabel('Amount of Samples'),ylabel('Error');
 %title('Sparse Quadrature Error');
 drawnow
+
+ha2 = gca;
+set(ha2,'yscale','log');

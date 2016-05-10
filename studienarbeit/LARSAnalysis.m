@@ -92,42 +92,48 @@ end
 figure;
 %subplot(2,1,1);
 uq_plot(degreeLARS,mean_lars,'c');
-xlabel('Degrees'),ylabel('Mean of LARS');
+xlabel('Polynomial Degree'),ylabel('Mean');
 %title('Mean Convergence in Dependence on the Pol. Degree');
 drawnow
 
 figure;
 %subplot(2,1,2);
 uq_plot(numbSamplesLARS,mean_lars,'c');
-xlabel('Amount of Samples'),ylabel('Mean of LARS');
+xlabel('Amount of Samples'),ylabel('Mean');
 drawnow
 
 figure;
 %subplot(2,1,1);
 uq_plot(degreeLARS,sd_lars,'c');
-xlabel('Degrees'),ylabel('SD of LARS');
+xlabel('Polynomial Degree'),ylabel('SD');
 %title('SD Convergence in Dependence on the Pol. Degree');
 drawnow
 
 figure;
 %subplot(2,1,2);
 uq_plot(numbSamplesLARS,sd_lars,'c');
-xlabel('Amount of Samples'),ylabel('SD of LARS');
+xlabel('Amount of Samples'),ylabel('SD');
 %title('SD Convergence in Dependence on the Amount of Samples');
 drawnow
 
 figure;
 %subplot(2,1,1);
-uq_plot(degreeLARS,log10(error_lars),'c');
-xlabel('Degrees'),ylabel('log(Error)');
+uq_plot(degreeLARS,error_lars,'c');
+xlabel('Polynomial Degree'),ylabel('Error');
 %title('LARS Error');
 drawnow
 
+ha1 = gca;
+set(ha1,'yscale','log');
+
 figure;
 %subplot(2,1,2);
-uq_plot(numbSamplesLARS,log10(error_lars),'c');
-xlabel('Amount of Samples'),ylabel('log(Error)');
+uq_plot(numbSamplesLARS,error_lars,'c');
+xlabel('Amount of Samples'),ylabel('Error');
 %title('LARS Error');
 drawnow
+
+ha2 = gca;
+set(ha2,'yscale','log');
 
 
