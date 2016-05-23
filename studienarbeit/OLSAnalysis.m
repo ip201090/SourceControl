@@ -64,7 +64,7 @@ for n=1:15
     if PCE_OLS.Error.LOO < 1e-20
         error_ols(n) = 0;
     else
-         error_ols(n) = PCE_OLS.Error.LOO;
+         error_ols(n) = PCE_OLS.Error.normEmpError;
     end
     degreeOLS(n) = n;
 end

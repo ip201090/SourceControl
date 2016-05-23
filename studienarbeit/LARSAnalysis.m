@@ -55,7 +55,7 @@ for k =1:15
    PCE_LARS = uq_createModel(MetaOpts);
    mean_lars(k) = PCE_LARS.PCE.Moments.Mean;
    sd_lars(k) = sqrt(PCE_LARS.PCE.Moments.Var);
-   error_lars(k) = PCE_LARS.Error.LOO;
+   error_lars(k) = PCE_LARS.Error.normEmpError;
    degreeLARS(k) = k;
    
 end

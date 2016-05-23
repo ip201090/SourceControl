@@ -32,6 +32,7 @@ temp = length(range);
 %Y = zeros(1,temp);
 y_mean = zeros(1,temp);
 y_std = zeros(1,temp);
+errorMC = zeros(1,temp);
 
 
 for k=1:10000
@@ -39,18 +40,20 @@ for k=1:10000
     Y = uq_evalModel(X,myModel);
     y_mean(k) = mean(Y);
     y_std(k) = std(Y);
+    errorMC(k) = y_std(k)/sqrt(k);
+
 end
 
 ver = version;
 
-if ver(1) == '8'
-    mean_rel_error = zeros(1,temp);
-    std_rel_error = zeros(1,temp);
-end
-
-mean_rel_error(:) = abs(y_mean(:)-mean_ref)/mean_ref;
-std_rel_error(:) = abs(y_std(:)-std_ref)/std_ref;
-
+% if ver(1) == '8'
+%     mean_rel_error = zeros(1,temp);
+%     std_rel_error = zeros(1,temp);
+%     
+% end
+% 
+% mean_rel_error(:) = abs(y_mean(:)-mean_ref)/mean_ref;
+% std_rel_error(:) = abs(y_std(:)-std_ref)/std_ref;
 
 %% Plotting the Results
 
@@ -77,20 +80,33 @@ end
 
 figure;
 uq_plot(range,y_mean,'b');
-xlabel('Amount of Sample Points'),ylabel('Mean of MC Analysis');
+xlabel('Amount of Samples'),ylabel('Mean');
 %title('Mean of MC Analysis');
 
 figure;
 uq_plot(range,y_std,'b');
-xlabel('Amount of Sample Points'),ylabel('SD of MC Analysis');
+xlabel('Amount of Samples'),ylabel('SD');
 %title('SD of MC Analysis')
 
-figure;
-uq_plot(range,log10(mean_rel_error));
-xlabel('Amount of Sample Points'),ylabel('rel. Mean Error');
+% figure;
+% uq_plot(range,mean_rel_error);
+% xlabel('Amount of Samples'),ylabel('rel. Mean Error');
 %title('Rel. Mean Error');
+% 
+% ha1 = gca;
+% set(ha1,'yscale','log');
+% 
+% figure;
+% uq_plot(range,std_rel_error);
+% xlabel('Amount of Samples'),ylabel('rel. SD Error');
+%title('Rel. SD Error');
+
+% ha2 = gca;
+% set(ha2,'yscale','log');
 
 figure;
-uq_plot(range,log10(std_rel_error));
-xlabel('Amount of Sample Points'),ylabel('rel. SD Error');
-%title('Rel. SD Error');
+uq_plot(range,errorMC);
+xlabel('Amount of Samples'),ylabel('Error MC');
+
+ha3 = gca;
+set(ha3,'yscale','log');
