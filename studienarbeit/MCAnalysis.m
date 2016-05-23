@@ -41,7 +41,6 @@ for k=1:10000
     y_mean(k) = mean(Y);
     y_std(k) = std(Y);
     errorMC(k) = y_std(k)/sqrt(k);
-
 end
 
 ver = version;
@@ -106,7 +105,8 @@ xlabel('Amount of Samples'),ylabel('SD');
 
 figure;
 uq_plot(range,errorMC);
-xlabel('Amount of Samples'),ylabel('Error MC');
+xlabel('Amount of Samples'),ylabel('Error');
 
 ha3 = gca;
 set(ha3,'yscale','log');
+

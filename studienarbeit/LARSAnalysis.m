@@ -60,7 +60,7 @@ for k =1:15
    
 end
 
-%% %% %% Evaluation of the LARS Method
+%%  Evaluation of the LARS Method
 % This evaluation you actually do not need, just in case you want to
 % calculate the quadrature output for a particular sample set
 %X = uq_getSample(6300,'MC',myInput);
