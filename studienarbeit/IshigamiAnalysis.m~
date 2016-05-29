@@ -204,7 +204,7 @@ MetaOpts.Input = myInput;
 MetaOpts.FullModel = myModel;
 
 
-%% LARS Calcultion
+%% Least Angle Regression gPC Model
 
 MetaOpts.Method = 'LARS';
 MetaOpts.ExpDesign.Sampling = 'MC';
@@ -361,12 +361,5 @@ errorPlot(14) = errorMC(8140);
 errorPlot(15) = errorMC(10000);
 
 figure;
-uq_plot(plotRange,errorPlot,'b',numbSamplesQuad,error_quad,'r',...
-    numbOLSSamp,error_ols,'g',...
-    numbSamplesQuadSparse,error_quad_sparse,'m',...
-    numbSamplesLARS,error_lars,'c');
-xlim([0 10000]);
-drawnow
+uq_plot(plotRange,errorPlot,'b',)
 
-ha2 = gca;
-set(ha2,'yscale','log');
