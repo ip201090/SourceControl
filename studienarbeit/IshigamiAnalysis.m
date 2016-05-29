@@ -314,7 +314,12 @@ uq_plot(plotRange,meanPlot,'b',numbSamplesQuad,mean_quad,'r',...
     numbOLSSamp,mean_ols,'g',numbSamplesQuadSparse,mean_quad_sparse,'m',...
     numbSamplesLARS,mean_lars,'c');
 xlim([0 10000]);
+xlabel('Amount of Samples'),ylabel('Mean');
 
+figure;
+uq_plot(degree,mean_quad,'r',degreeOLS,mean_ols,'g',...
+    degreeSparse,mean_quad_sparse,'m',degreeLARS,mean_lars,'c');
+xlabel('Polynomial Degree'),ylabel('Mean');
 %% SD Plot for the Respective Methods
 sdPlot = zeros(1,15);
 
@@ -339,7 +344,12 @@ uq_plot(plotRange,sdPlot,'b',numbSamplesQuad,sd_quad,'r',...
     numbOLSSamp,sd_ols,'g',numbSamplesQuadSparse,sd_quad_sparse,'m',...
     numbSamplesLARS,sd_lars,'c');
 xlim([0 10000]);
+xlabel('Amount of Samples'),ylabel('SD');
 
+figure;
+uq_plot(degree,sd_quad,'r',degreeOLS,sd_ols,'g',...
+    degreeSparse,sd_quad_sparse,'m',degreeLARS,sd_lars,'c');
+xlabel('Polynomial Degree'),ylabel('SD');
 %% Error Plot for the Respective Methods
 
 errorPlot = zeros(1,15);
