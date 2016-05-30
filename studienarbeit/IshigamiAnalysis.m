@@ -308,7 +308,7 @@ meanPlot(13) = y_mean(6117);
 meanPlot(14) = y_mean(8140);
 meanPlot(15) = y_mean(10000);
 
-
+% Mean plot in dependency on the sample number
 figure;
 uq_plot(plotRange,meanPlot,'b',numbSamplesQuad,mean_quad,'r',...
     numbOLSSamp,mean_ols,'g',numbSamplesQuadSparse,mean_quad_sparse,'m',...
@@ -316,6 +316,7 @@ uq_plot(plotRange,meanPlot,'b',numbSamplesQuad,mean_quad,'r',...
 xlim([0 10000]);
 xlabel('Amount of Samples'),ylabel('Mean');
 
+% Mean plot in dependency on the polynomial degree
 figure;
 uq_plot(degree,mean_quad,'r',degreeOLS,mean_ols,'g',...
     degreeSparse,mean_quad_sparse,'m',degreeLARS,mean_lars,'c');
@@ -339,6 +340,7 @@ sdPlot(13) = y_std(6117);
 sdPlot(14) = y_std(8140);
 sdPlot(15) = y_std(10000);
 
+% SD plot in dependency on the sample number
 figure;
 uq_plot(plotRange,sdPlot,'b',numbSamplesQuad,sd_quad,'r',...
     numbOLSSamp,sd_ols,'g',numbSamplesQuadSparse,sd_quad_sparse,'m',...
@@ -346,6 +348,7 @@ uq_plot(plotRange,sdPlot,'b',numbSamplesQuad,sd_quad,'r',...
 xlim([0 10000]);
 xlabel('Amount of Samples'),ylabel('SD');
 
+% SD plot in dependency on the polynomial degree
 figure;
 uq_plot(degree,sd_quad,'r',degreeOLS,sd_ols,'g',...
     degreeSparse,sd_quad_sparse,'m',degreeLARS,sd_lars,'c');
@@ -370,6 +373,7 @@ errorPlot(13) = errorMC(6117);
 errorPlot(14) = errorMC(8140);
 errorPlot(15) = errorMC(10000);
 
+% Error plot in dependency on the sample number
 figure;
 uq_plot(plotRange,errorPlot,'b',numbSamplesQuad,error_quad,'r',...
     numbOLSSamp,error_ols,'g',...
@@ -380,3 +384,11 @@ drawnow
 
 ha2 = gca;
 set(ha2,'yscale','log');
+
+% Error plot in dependency on the polynomial degree
+figure;
+uq_plot(degree,error_quad,'r',degreeOLS,error_ols,'g',...
+    degreeSparse,error_quad_sparse,'m',degreeLARS,error_lars,'c');
+
+ha3 = gca;
+set(ha3,'yscale','log');
