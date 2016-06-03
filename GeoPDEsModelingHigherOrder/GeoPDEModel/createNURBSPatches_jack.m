@@ -1,4 +1,4 @@
-## Copyright (C) 2015 Andreas Pels, Jacopo Corno
+%% Copyright (C) 2015 Andreas Pels, Jacopo Corno
 
 function [convexnrb, concavenrb] = createNURBSPatches_jack(knotRefinementHorizontal,knotRefinementVertical,optionalPlots, geometry)
 

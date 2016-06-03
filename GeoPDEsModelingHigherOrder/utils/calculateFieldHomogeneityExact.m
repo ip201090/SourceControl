@@ -1,4 +1,4 @@
-## Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
+%% Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
 
 function [ fieldHomogeneity ] = calculateFieldHomogeneityExact( u, space, geometry, xRange, yRange, averageGradient )
 %CALCULATEFIELDHOMOGENEITY Calculates the field homogeneity in the given

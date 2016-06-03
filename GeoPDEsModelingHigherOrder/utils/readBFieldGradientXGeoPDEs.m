@@ -1,4 +1,4 @@
-## Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
+%% Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
 
 function [ fieldValues ] = readBFieldGradientXGeoPDEs( u, space, geometry, gnum, resolution, patch )
 %READBFIELDGRADIENTXGEOPDES Reads B-field gradient in x-direction from

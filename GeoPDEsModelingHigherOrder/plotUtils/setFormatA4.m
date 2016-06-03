@@ -1,4 +1,4 @@
-## Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
+%% Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
 
 function [ ] = setFormat( handles, fontSizes )
 %SETFORMAT Set format for figures

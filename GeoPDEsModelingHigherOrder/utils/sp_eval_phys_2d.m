@@ -1,4 +1,4 @@
-## Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
+%% Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
 
 function [ value, x, y ] = sp_eval_phys_2d( u, space, geometry, xRange, yRange, resolution, options )
 absTolInvMap=1e-5;

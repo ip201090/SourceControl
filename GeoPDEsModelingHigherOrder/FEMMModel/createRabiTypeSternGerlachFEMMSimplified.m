@@ -1,4 +1,4 @@
-## Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
+%% Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
 
 function [ ] = createRabiTypeSternGerlachFEMMSimplified(type, meshSize, enforcedBoundaryPotential, folder, fileName)
 % Add femm path to MATLAB

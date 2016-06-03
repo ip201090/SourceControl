@@ -1,4 +1,4 @@
-## Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
+%% Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
 
 function [ ] = createRabiTypeSternGerlachFEMMModifiedGeometry(type, turns, current, meshSize, folder, fileName, lengthFromOuterLimit, geometry)
 % Add femm path to MATLAB

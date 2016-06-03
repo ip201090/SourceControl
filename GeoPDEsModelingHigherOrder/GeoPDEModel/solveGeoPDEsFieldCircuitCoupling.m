@@ -1,4 +1,4 @@
-## Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
+%% Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
 
 function [uFinal, sp, geometry, gnum, msh] = solveGeoPDEsFieldCircuitCoupling( geometryAddress, current )
 %SOLVEGEOPDESFIELDCIRCUITCOUPLING Summary of this function goes here
