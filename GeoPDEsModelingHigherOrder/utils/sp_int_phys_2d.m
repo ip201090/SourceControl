@@ -1,5 +1,3 @@
-%% Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
-
 %%
 % u, space, geometry are values from GeoPDEs for the patch which should be
 % used.
@@ -11,10 +9,12 @@
 % The result is in Tmm ***Careful here***, NOT Tm
 
 function [ q ] = sp_int_phys_2d( u, space, geometry, xRange, yRange, options )
-absTolInvMap=1e-5;
+absTolInvMap=1e-7;
 % Find the middle of the area to be evaluated
 [ut0, vt0]=inv_map_2d(geometry.nurbs, [(xRange(2)+xRange(1))./2; (yRange(2)+yRange(1))./2], [0;0]);
 
+   % Copyright (c) 2015 Andreas Pels
+    
     function [value]=evalphysquad(x,y)
         value=zeros(size(x));
         geo=geometry.nurbs;

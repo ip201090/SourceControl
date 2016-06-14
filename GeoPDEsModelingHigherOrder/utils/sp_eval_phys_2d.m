@@ -1,7 +1,7 @@
-%% Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
+% Copyright (c) 2015 Andreas Pels
 
 function [ value, x, y ] = sp_eval_phys_2d( u, space, geometry, xRange, yRange, resolution, options )
-absTolInvMap=1e-5;
+absTolInvMap=1e-7;
 % Find the middle of the area to be evaluated
 [ut0, vt0]=inv_map_2d(geometry.nurbs, [(xRange(2)+xRange(1))./2; (yRange(2)+yRange(1))./2], [0;0]);
 

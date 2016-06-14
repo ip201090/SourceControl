@@ -1,4 +1,4 @@
-%% Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
+% Copyright (c) 2015 Augusto Garcia Agundez
 
 % % Example of a multiPatchStruct and how it should look like, for the 3-patch stern gerlach model
 

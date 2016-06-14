@@ -1,4 +1,4 @@
-%% Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
+% Copyright (c) 2015 Andreas Pels
 
 function [uFinal, sp, geometry, gnum, msh] = solveGeoPDEsFieldCircuitCoupling( geometryAddress, current )
 %SOLVEGEOPDESFIELDCIRCUITCOUPLING Summary of this function goes here
@@ -25,8 +25,8 @@ problem_data.hLower=@(x, y, ind, bnd_side, max_side) zeros(size(x));
 [geometry, boundaries, interfaces] = mp_geo_load (problem_data.geo_name);
 npatch = numel (geometry);
 
-% method_data.nquad=[5 5]; 
-method_data.nquad=[3 3]; 
+method_data.nquad=[5 5]; 
+%method_data.nquad=[3 3]; 
 method_data.nsub=[1 1];
 method_data.regularity=method_data.nquad-2;
 method_data.degree=method_data.nquad-1;

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+  <meta name="date" content="08-Feb-2012"/>
+  <meta name="author" content="rafavzqz@users.sourceforge.net" />
+  <title>Function Reference: op_f_vxn_3d</title>
+  <link rel="stylesheet" type="text/css" href="http://geopdes.sf.net/functions/docs.css" />
+  </head>
+<body>
+<div id="top"><a href="http://geopdes.sourceforge.net">Home</a> &middot; <a href="http://geopdes.sf.net/functions/geopdes_maxwell/overview.html">Function Reference</a></div>
+<div id="doccontent">
+<pre>
+OP_F_VXN_3D: assemble the vector r = [r(i)], with  r(i) = (f, v_i x n), with n the normal exterior vector. 
+
+  mat = op_f_vxn_3d (spv, msh, coeff);
+
+INPUT:
+
+  spv:   structure representing the function space (see sp_bsp_hcurl_3d_phys)
+  msh:   structure containing the domain partition and the quadrature rule (see msh_push_forward_3d)
+  coeff: source function evaluated at the quadrature points
+
+OUTPUT:
+
+  mat: assembled right-hand side 
+</pre>
+
+
+<div id="left_footer">
+  page maintained by <address><a href="mailto:rafavzqz@users.sourceforge.net"> rafavzqz@users.sourceforge.net </a></address>
+  <!-- hhmts start --> Last modified: 08-Feb-2012 <!-- hhmts end -->
+</div>
+<div id="right_footer">
+<a href="http://sourceforge.net/projects/geopdes"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=352940&amp;type=9" width="80" height="15" alt="Get geopdes at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a> </div>
+
+</body>
+</html>

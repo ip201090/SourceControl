@@ -1,4 +1,4 @@
-%% Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
+% Copyright (c) 2015 Augusto Garcia Agundez
 
 % Create a multipatch from text files for NURBS obtained through nrbexport. Input is structure multiPatchStruct described as follows:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

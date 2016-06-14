@@ -1,4 +1,4 @@
-%% Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
+% Copyright (c) 2015 Andreas Pels
 
 function [ utReturn, vtReturn ] = inv_map_2d( nrb, p, t )    
 % Check dimensions of vector p
@@ -10,7 +10,7 @@ if (isequal(size(p),[2 1]) && isequal(size(t),[2 1]))
     
     %tic;
     %options = optimset('Jacobian','on', 'Display', 'off');
-    parametricSolution=newton(@nrbnewton, [ut0; vt0], 1e-5);
+    parametricSolution=newton(@nrbnewton, [ut0; vt0], 1e-7);
     
     %parametricSolution=fsolve(@nrbnewton, [ut0; vt0], options);
     

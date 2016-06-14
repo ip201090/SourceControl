@@ -1,0 +1,89 @@
+[Format]      =  4.0
+[Frequency]   =  0
+[Precision]   =  1e-008
+[MinAngle]    =  30
+[Depth]       =  1
+[LengthUnits] =  inches
+[ProblemType] =  planar
+[Coordinates] =  cartesian
+[ACSolver]    =  0
+[Comment]     =  "Add comments here."
+[PointProps]   = 2
+  <BeginPoint>
+    <PointName> = "p1"
+    <I_re> = 0
+    <I_im> = 0
+    <A_re> = 1
+    <A_im> = 0
+  <EndPoint>
+  <BeginPoint>
+    <PointName> = "p0"
+    <I_re> = 0
+    <I_im> = 0
+    <A_re> = 10
+    <A_im> = 0
+  <EndPoint>
+[BdryProps]   = 2
+  <BeginBdry>
+    <BdryName> = "b1"
+    <BdryType> = 0
+    <A_0> = 20
+    <A_1> = -5
+    <A_2> = 0
+    <Phi> = 0
+    <c0> = 0
+    <c0i> = 0
+    <c1> = 0
+    <c1i> = 0
+    <Mu_ssd> = 0
+    <Sigma_ssd> = 0
+  <EndBdry>
+  <BeginBdry>
+    <BdryName> = "b0"
+    <BdryType> = 0
+    <A_0> = 0
+    <A_1> = 0
+    <A_2> = 0
+    <Phi> = 0
+    <c0> = 0
+    <c0i> = 0
+    <c1> = 0
+    <c1i> = 0
+    <Mu_ssd> = 0
+    <Sigma_ssd> = 0
+  <EndBdry>
+[BlockProps]  = 1
+  <BeginBlock>
+    <BlockName> = "Air"
+    <Mu_x> = 1
+    <Mu_y> = 1
+    <H_c> = 0
+    <H_cAngle> = 0
+    <J_re> = 0
+    <J_im> = 0
+    <Sigma> = 0
+    <d_lam> = 0
+    <Phi_h> = 0
+    <Phi_hx> = 0
+    <Phi_hy> = 0
+    <LamType> = 0
+    <LamFill> = 1
+    <NStrands> = 0
+    <WireD> = 0
+    <BHPoints> = 0
+  <EndBlock>
+[CircuitProps]  = 0
+[NumPoints] = 4
+0	0	0	0
+10	0	0	0
+10	10	0	0
+0	10	0	0
+[NumSegments] = 4
+2	1	-1	0	0	0
+0	3	-1	0	0	0
+3	2	-1	1	0	0
+0	1	-1	2	0	0
+[NumArcSegments] = 0
+[NumHoles] = 0
+[NumBlockLabels] = 1
+5.0999999999999996	5.7000000000000002	1	-1	0	0	0	1	0

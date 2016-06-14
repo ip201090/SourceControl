@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+  <meta name="date" content="08-Feb-2012"/>
+  <meta name="author" content="rafavzqz@users.sourceforge.net" />
+  <title>Function Reference: sp_bspline_2d_3forms</title>
+  <link rel="stylesheet" type="text/css" href="http://geopdes.sf.net/functions/docs.css" />
+  </head>
+<body>
+<div id="top"><a href="http://geopdes.sourceforge.net">Home</a> &middot; <a href="http://geopdes.sf.net/functions/geopdes_maxwell/overview.html">Function Reference</a></div>
+<div id="doccontent">
+<pre> SP_BSPLINE_2D_3FORMS: Constructor of the class of a tensor-product space of B-Splines in 2D, using a transformation for 3-forms.
+
+     sp = sp_bspline_2d_3forms (knots, degree, msh)
+
+ INPUTS:
+     
+     knots:     open knot vector    
+     degree:    b-spline polynomial degree
+     msh:       msh object that defines the quadrature rule (see msh_2d)
+
+ OUTPUT:
+
+    sp: object representing the discrete function space, with the following fields and methods:
+
+        FIELD_NAME      (SIZE)                      DESCRIPTION
+        spu             (struct)                    space of univariate splines in the first parametric direction
+        spv             (struct)                    space of univariate splines in the second parametric direction
+        ndof            (scalar)                    total number of degrees of freedom
+        ndof_dir        (1 x 2 vector)              degrees of freedom along each direction
+        nsh_max         (scalar)                    maximum number of shape functions per element
+        nsh_dir         (1 x 2 vector)              maximum number of univariate shape functions per element in each parametric direction
+        ncomp           (scalar)                    number of components of the functions of the space (actually, 1)
+
+       METHOD_NAME
+       sp_evaluate_col: compute the basis functions in one column of the mesh (that is, fixing the element in the first parametric direction).
+       sp_evaluate_col_param: compute the basis functions in one column of the mesh in the reference domain.
+       sp_precompute:  compute any of the fields related to the discrete
+                       space (except boundary), in all the quadrature points,
+                       as in the space structure from previous versions.
+
+ Copyright (C) 2009, 2010, 2011 Carlo de Falco
+ Copyright (C) 2011 Rafael Vazquez
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+</pre>
+
+
+<div id="left_footer">
+  page maintained by <address><a href="mailto:rafavzqz@users.sourceforge.net"> rafavzqz@users.sourceforge.net </a></address>
+  <!-- hhmts start --> Last modified: 08-Feb-2012 <!-- hhmts end -->
+</div>
+<div id="right_footer">
+<a href="http://sourceforge.net/projects/geopdes"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=352940&amp;type=9" width="80" height="15" alt="Get geopdes at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a> </div>
+
+</body>
+</html>

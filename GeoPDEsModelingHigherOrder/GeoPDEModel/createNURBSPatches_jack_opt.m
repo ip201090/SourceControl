@@ -1,5 +1,3 @@
-%% Copyright (C) 2015 Andreas Pels, Jacopo Corno
-
 function [convexnrb, concavenrb] = createNURBSPatches_jack_opt(knotRefinementHorizontal,knotRefinementVertical,optionalPlots, geometry)
 
 %warning('Not yet implemented: The changing of the control points with the geometry argument!');
@@ -131,7 +129,7 @@ nrbTopLine    = nrbdegelev (nrbline (p4, p3), 1);
 % Create nurbs patch
 nurbsAirGapPatch = nrbcoons(nrbBottomLine, nrbTopLine, convexnrb, concavenrb);
 
-% Set iternal control points to be as obtained by Winslow optimization
+% Set internal control points to be as obtained by Winslow optimization
 [~, ~, new_knots] = kntrefine (nurbsAirGapPatch.knots, [1 0], [2 2], [1 1]); % Winslow optimization was run on this refinement
 nurbsAirGapPatch  = nrbkntins (nurbsAirGapPatch, new_knots);
 

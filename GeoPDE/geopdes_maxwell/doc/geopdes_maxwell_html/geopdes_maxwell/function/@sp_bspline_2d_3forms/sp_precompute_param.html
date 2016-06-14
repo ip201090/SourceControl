@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+  <meta name="date" content="08-Feb-2012"/>
+  <meta name="author" content="rafavzqz@users.sourceforge.net" />
+  <title>Function Reference: @sp_bspline_2d_3forms/sp_precompute_param</title>
+  <link rel="stylesheet" type="text/css" href="http://geopdes.sf.net/functions/docs.css" />
+  </head>
+<body>
+<div id="top"><a href="http://geopdes.sourceforge.net">Home</a> &middot; <a href="http://geopdes.sf.net/functions/geopdes_maxwell/overview.html">Function Reference</a></div>
+<div id="doccontent">
+<pre> SP_PRECOMPUTE_PARAM: precompute all the fields, as in the space structure of the technical report, before mapping to the physical domain.
+  This function is used before applying the map.
+
+     space = sp_precompute_param (space, msh);
+     space = sp_precompute_param (space, msh, 'option');
+
+ INPUT:
+     
+    space: object representing the discrete function space (see sp_bspline_2d_3forms).
+    'option', value: additional optional parameters, the available options are:
+        nsh, connectivity, value (shape_functions).
+     The value must be true or false. All the values are false by default.
+
+ OUTPUT:
+
+    space: object containing the information of the input object, plus the 
+            fields of the old structure, that are listed below. If no option
+            is given all the fields are computed. If an option is given,
+            only the selected fields will be computed.
+
+    FIELD_NAME      (SIZE)                             DESCRIPTION
+    nsh             (1 x msh.nel vector)               actual number of shape functions per each element
+    connectivity    (nsh_max x msh.nel vector)         indices of basis functions that do not vanish in each element
+    shape_functions (msh.nqn x nsh_max x msh.nel)      basis functions evaluated at each quadrature node in each element
+
+ Copyright (C) 2009, 2010 Carlo de Falco
+ Copyright (C) 2011 Rafael Vazquez
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+</pre>
+
+
+<div id="left_footer">
+  page maintained by <address><a href="mailto:rafavzqz@users.sourceforge.net"> rafavzqz@users.sourceforge.net </a></address>
+  <!-- hhmts start --> Last modified: 08-Feb-2012 <!-- hhmts end -->
+</div>
+<div id="right_footer">
+<a href="http://sourceforge.net/projects/geopdes"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=352940&amp;type=9" width="80" height="15" alt="Get geopdes at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a> </div>
+
+</body>
+</html>

@@ -1,5 +1,3 @@
-%% Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
-
 function [ xResult ] = newton( fun, x0, AbsTol)
 
 xOld=x0;

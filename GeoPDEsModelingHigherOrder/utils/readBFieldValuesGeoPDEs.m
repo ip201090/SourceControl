@@ -1,4 +1,4 @@
-%% Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
+% Copyright (c) 2015 Andreas Pels
 
 function [ fieldValues ] = readBFieldValuesGeoPDEs( u, space, geometry, gnum, resolution, patch )
 %READBFIELDVALUESGEOPDES Reads B-field values from

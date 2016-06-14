@@ -1,4 +1,4 @@
-%% Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
+% Copyright (c) 2015 Andreas Pels
 
 function [ permeability ] = inversePermeability( x, y, patch, iel, npatch, nel_dir )
 %INVERSEPERMEABILITY Return inverse permeability at positions 'x', 'y' for

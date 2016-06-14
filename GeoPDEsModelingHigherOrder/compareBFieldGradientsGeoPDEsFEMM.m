@@ -1,4 +1,4 @@
-## Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
+% Copyright (c) 2015 Andreas Pels
 
 % Compare the B-field gradients and other quantities for the original model
 % between GeoPDEs and FEMM.
@@ -6,7 +6,6 @@
 clear all;
 close all;
 %clc;
-addpath('FEMMModel', 'GeoPDEModel', 'utils', 'winslow');
 
 global HandleToFEMM;
 
@@ -21,8 +20,8 @@ lengthFromOuterLimit=100;
 
 % Calculate values for original model
 createRabiTypeSternGerlachFEMM('strong', turns, current, meshSize, folderName, 'AccuracyVectorPotential_simulation0', lengthFromOuterLimit);
-%addpath C:\femm42\mfiles\
-%openfemm();
+% addpath C:\femm42\mfiles\
+% openfemm();
 %opendocument('FEMMFindOptimalMeshSize\simulation5.fem')
 
 %mi_analyze();
@@ -43,38 +42,6 @@ strongRabi.poleTipPeak=[strongRabi.centerConvex(1)+strongRabi.rConvex, 0.00];
 strongRabi.point6=[strongRabi.point4(1)-10, strongRabi.point4(2)];
 strongRabi.point7=[strongRabi.point3(1)+10, strongRabi.point3(2)];
 
-
-%x=[0,0, 2,0,0, 0,0, 1,0,0]
-x=[0,0, 0,0,0, 0,0, 0,0,0]
-% x=[      0
-%          0
-%     0.1965
-%     0.4272
-%     0.3955
-%     0.4373
-%          0
-%    -1.3093
-%    -0.6353
-%    -0.5000]
-% 
-% x=[      0
-%          0
-%          0
-%     0.4219
-%     0.2500
-%     0.4375
-%          0
-%    -1.2031
-%    -0.4844
-%     0.1406]
-
-% x=[0.2150
-%     0.4272
-%     0.4454
-%    -1.3093
-%    -0.6353
-%    -0.5000]
-
 geometry.rConvex=4;
 
 geometry.rConcave=5;
@@ -93,35 +60,23 @@ geometry.point5=[geometry.centerConvex(1)+cosd(geometry.angleConvex)*geometry.rC
 geometry.angleConcave=82.8750;
 geometry.point1=[geometry.centerConcave(1)+cosd(geometry.angleConcave)*geometry.rConcave, sind(geometry.angleConcave)*geometry.rConcave];
 
-%Set x coordinate of point2 the same as that of point1
+% Set x coordinate of point2 the same as that of point1
 geometry.point2=[geometry.point1(1), 6.96];
 
-% Set displacements to zero
-geometry.dispConvexX1=x(1);
-geometry.dispConvexY1=x(2);
+% Set displacements of the control points
+% ==> Experiment a little bit. You can find more information in the paper
+geometry.dispConvexX1=0;
+geometry.dispConvexY1=0;
 geometry.dispConvexW1=0;
-geometry.dispConvexX2=x(3);
-geometry.dispConvexY2=x(4);
-geometry.dispConvexW2=x(5);
-geometry.dispConcaveX1=x(6);
-geometry.dispConcaveY1=x(7);
+geometry.dispConvexX2=0;
+geometry.dispConvexY2=0;
+geometry.dispConvexW2=0;
+geometry.dispConcaveX1=0;
+geometry.dispConcaveY1=0;
 geometry.dispConcaveW1=0;
-geometry.dispConcaveX2=x(8);
-geometry.dispConcaveY2=x(9);
-geometry.dispConcaveW2=x(10);
-
-% geometry.dispConvexX1=0;
-% geometry.dispConvexY1=0;
-% geometry.dispConvexW1=0;
-% geometry.dispConvexX2=x(1);
-% geometry.dispConvexY2=x(2);
-% geometry.dispConvexW2=x(3);
-% geometry.dispConcaveX1=0.4375;
-% geometry.dispConcaveY1=0;
-% geometry.dispConcaveW1=0;
-% geometry.dispConcaveX2=x(4);
-% geometry.dispConcaveY2=x(5);
-% geometry.dispConcaveW2=x(6);
+geometry.dispConcaveX2=0;
+geometry.dispConcaveY2=0;
+geometry.dispConcaveW2=0;
 
 % Solve partial model in GeoPDEs
 tic;
@@ -154,7 +109,7 @@ figure;
 surf(fieldValuesFEMM.X, fieldValuesFEMM.Y, abs((fieldValuesFEMM.BAbs-fieldValues.BAbs)./fieldValuesFEMM.BAbs)*100, 'EdgeColor', 'none','FaceColor','interp');
 xlabel('X');
 ylabel('Y');
-title('Relative error of B-field values between FEMM and GeoPDEs')
+title('Relative error of B-field values between FEMM and GeoPDEs in %')
 caxis([0 2]);
 view(2);
 
@@ -194,7 +149,7 @@ fieldValuesInt.Y=YI;
 fieldValuesInt.stepWidthX=xi(2)-xi(1);
 fieldValuesInt.stepWidthY=yi(2)-yi(1);
 
-% Read and plot B-Field values from FEMM and GeoPDEs in the beam area (old method, not high accuracy)
+% Read and plot B-Field values from FEMM and GeoPDEs in the beam area ("exact", error tolerance 10^-7)
 [fieldValuesGeoPDEsExact, x, y]=sp_eval_phys_2d(u(gnum{2}), space{2}, geometryGeoPDEs(2), [-1.5 -0.5], [0 3.0], [20 20], 'gradient');
 figure;
 surf(x, y, fieldValuesGeoPDEsExact);
@@ -208,6 +163,7 @@ view(viewAngle);
 setFormatQuadratic();
 savePlot('GeoPDEsBField');
 
+% Read and plot FEMM results
 fieldValuesFEMM=readBFieldValuesFEMM(fieldValuesInt);
 figure;
 surf(fieldValuesFEMM.X, fieldValuesFEMM.Y, fieldValuesFEMM.BAbs);
@@ -220,31 +176,9 @@ view(viewAngle);
 setFormatQuadratic();
 savePlot('FEMMBField');
 
-% figure;
-% surf(fieldValuesFEMM.X, fieldValuesFEMM.Y, fieldValuesGeoPDEsExact-fieldValuesFEMM.BAbs);
-% title('Absolute error GeoPDEs-FEMM');
-% xlabel('x[m]');
-% ylabel('y[m]');
-% zlabel('Absolute error in B-field[T]');
-% colorbar;
-% view(viewAngle);
-% setFormatQuadratic();
-% savePlot('AbsoluteErrorField');
-
-% figure;
-% surf(fieldValuesFEMM.X, fieldValuesFEMM.Y, abs(fieldValuesGeoPDEsExact-fieldValuesFEMM.BAbs)./fieldValuesFEMM.BAbs*100);
-% title('Relative error abs(GeoPDEs-FEMM)./FEMM');
-% xlabel('x[m]');
-% ylabel('y[m]');
-% zlabel('Relative error in B-field[%]');
-% colorbar;
-% view(viewAngle);
-% setFormatQuadratic();
-% savePlot('RelativeErrorField');
-
 
 %% Gradients
-% Calculate gradients using higher order (still the old method, not exact)
+% Calculate gradients using higher order (not exact)
 fieldValuesGradFEMM=calculateGradientHOrder(fieldValuesFEMM);
 figure;
 surf(fieldValuesGradFEMM.X, fieldValuesGradFEMM.Y, fieldValuesGradFEMM.BGradX);
@@ -257,6 +191,7 @@ view(viewAngle);
 setFormatQuadratic();
 savePlot('FEMMBFieldGradient');
 
+% Old method
 % figure;
 % fieldValuesGradGeoPDEs=calculateGradientHOrder(fieldValuesInt);
 % surf(fieldValuesGradGeoPDEs.X, fieldValuesGradGeoPDEs.Y, fieldValuesGradGeoPDEs.BGradX);
@@ -269,7 +204,7 @@ savePlot('FEMMBFieldGradient');
 % setFormatQuadratic();
 % savePlot('GeoPDEsBFieldGradient');
 
-% Extract "exact" (error tolerance 10^-3) gradient from GeoPDEs (new method)
+% Extract "exact" (error tolerance 10^-7) gradient from GeoPDEs (new method)
 tic;
 figure;
 [fieldValuesGradGeoPDEsExact, x, y]=sp_eval_phys_2d(u(gnum{2}), space{2}, geometryGeoPDEs(2), [-1.5 -1], [0 3], [10 10],'hessian');
@@ -284,32 +219,9 @@ setFormatQuadratic();
 savePlot('GeoPDEsBFieldGradientExact');
 toc;
 
-% Calculate gradients using higher order
-% figure;
-% surf(fieldValuesGradFEMM.X, fieldValuesGradFEMM.Y, fieldValuesGradGeoPDEsExact-fieldValuesGradFEMM.BGradX);
-% title('Absolute error GeoPDEs-FEMM');
-% xlabel('x[m]');
-% ylabel('y[m]');
-% zlabel('Absolute error in gradient x-direction[T/m]');
-% colorbar;
-% view(viewAngle);
-% setFormatQuadratic();
-% savePlot('AbsoluteErrorGradient');
-
-% figure;
-% surf(fieldValuesGradFEMM.X, fieldValuesGradFEMM.Y, abs(fieldValuesGradGeoPDEsExact-fieldValuesGradFEMM.BGradX)./fieldValuesGradFEMM.BGradX*100);
-% title('Relative error abs(GeoPDEs-FEMM)./FEMM');
-% xlabel('x[m]');
-% ylabel('y[m]');
-% zlabel('Relative error in gradient x-direction[%]');
-% colorbar;
-% view(viewAngle);
-% setFormatQuadratic();
-% savePlot('RelativeErrorGradient');
 
 % Calculate figures of merit: Average gradient, Homogeneity, relative error
 % of these quantities betwenn FEMM and GeoPDEs
-
 tic;
 averageGradientGeoPDEsExact=sp_int_phys_2d(u(gnum{2}), space{2}, geometryGeoPDEs(2), [-1.5 -1], [0 3], 'hessian')./1.5
 toc;

@@ -1,0 +1,99 @@
+[Format]      =  4.0
+[Frequency]   =  0
+[Precision]   =  1e-008
+[MinAngle]    =  30
+[Depth]       =  1
+[LengthUnits] =  inches
+[ProblemType] =  planar
+[Coordinates] =  cartesian
+[ACSolver]    =  0
+[Comment]     =  "Add comments here."
+[PointProps]   = 0
+[BdryProps]   = 2
+  <BeginBdry>
+    <BdryName> = "New Boundary"
+    <BdryType> = 0
+    <A_0> = 0
+    <A_1> = 0
+    <A_2> = 0
+    <Phi> = 0
+    <c0> = 0
+    <c0i> = 0
+    <c1> = 0
+    <c1i> = 0
+    <Mu_ssd> = 0
+    <Sigma_ssd> = 0
+  <EndBdry>
+  <BeginBdry>
+    <BdryName> = "New Boundary1"
+    <BdryType> = 0
+    <A_0> = 1
+    <A_1> = 0
+    <A_2> = 0
+    <Phi> = 0
+    <c0> = 0
+    <c0i> = 0
+    <c1> = 0
+    <c1i> = 0
+    <Mu_ssd> = 0
+    <Sigma_ssd> = 0
+  <EndBdry>
+[BlockProps]  = 2
+  <BeginBlock>
+    <BlockName> = "New Material"
+    <Mu_x> = 1
+    <Mu_y> = 1
+    <H_c> = 0
+    <H_cAngle> = 0
+    <J_re> = 0
+    <J_im> = 0
+    <Sigma> = 0
+    <d_lam> = 0
+    <Phi_h> = 0
+    <Phi_hx> = 0
+    <Phi_hy> = 0
+    <LamType> = 0
+    <LamFill> = 1
+    <NStrands> = 0
+    <WireD> = 0
+    <BHPoints> = 0
+  <EndBlock>
+  <BeginBlock>
+    <BlockName> = "New Material 1"
+    <Mu_x> = 500
+    <Mu_y> = 500
+    <H_c> = 0
+    <H_cAngle> = 0
+    <J_re> = 0
+    <J_im> = 0
+    <Sigma> = 0
+    <d_lam> = 0
+    <Phi_h> = 0
+    <Phi_hx> = 0
+    <Phi_hy> = 0
+    <LamType> = 0
+    <LamFill> = 1
+    <NStrands> = 0
+    <WireD> = 0
+    <BHPoints> = 0
+  <EndBlock>
+[CircuitProps]  = 0
+[NumPoints] = 6
+0.5	6.7400000000000002	0	0
+0.51000000000000001	2.23	0	0
+7.5	2.2400000000000002	0	0
+7.5	6.7400000000000002	0	0
+3	4.2300000000000004	0	0
+5	4.2300000000000004	0	0
+[NumSegments] = 4
+0	1	-1	0	0	0
+1	2	-1	1	0	0
+2	3	-1	0	0	0
+3	0	-1	2	0	0
+[NumArcSegments] = 2
+4	5	180	1	0	0	0
+5	4	180	1	0	0	0
+[NumHoles] = 0
+[NumBlockLabels] = 2
+1.8	5.79	1	-1	0	0	0	1	0
+3.9100000000000001	4.21	2	-1	0	0	0	1	0

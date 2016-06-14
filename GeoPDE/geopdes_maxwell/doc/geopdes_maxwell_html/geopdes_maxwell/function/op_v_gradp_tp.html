@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+  <meta name="date" content="08-Feb-2012"/>
+  <meta name="author" content="rafavzqz@users.sourceforge.net" />
+  <title>Function Reference: op_v_gradp_tp</title>
+  <link rel="stylesheet" type="text/css" href="http://geopdes.sf.net/functions/docs.css" />
+  </head>
+<body>
+<div id="top"><a href="http://geopdes.sourceforge.net">Home</a> &middot; <a href="http://geopdes.sf.net/functions/geopdes_maxwell/overview.html">Function Reference</a></div>
+<div id="doccontent">
+<pre> OP_V_GRADP_TP: assemble the matrix B = [b(i,j)], b(i,j) = (epsilon grad p_i, v_j), exploiting the tensor product structure.
+
+   mat = op_v_gradp_tp (spv, spp, msh, epsilon);
+   [rows, cols, values] = op_v_gradp_tp (spv, spp, msh, epsilon);
+
+ INPUT:
+
+   spv:     object that defines the space of trial functions (see sp_vector_2d_curl_transform)
+   spp:     object that defines the space of the multiplier (see sp_bspline_2d)
+   msh:     object that defines the domain partition and the quadrature rule (see msh_2d)
+   epsilon: function handle to compute some physical coefficient
+
+ OUTPUT:
+
+   mat:    assembled stiffness matrix
+   rows:   row indices of the nonzero entries
+   cols:   column indices of the nonzero entries
+   values: values of the nonzero entries
+ 
+ Copyright (C) 2011 Rafael Vazquez
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+</pre>
+
+
+<div id="left_footer">
+  page maintained by <address><a href="mailto:rafavzqz@users.sourceforge.net"> rafavzqz@users.sourceforge.net </a></address>
+  <!-- hhmts start --> Last modified: 08-Feb-2012 <!-- hhmts end -->
+</div>
+<div id="right_footer">
+<a href="http://sourceforge.net/projects/geopdes"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=352940&amp;type=9" width="80" height="15" alt="Get geopdes at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a> </div>
+
+</body>
+</html>

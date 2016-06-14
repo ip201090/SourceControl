@@ -1,4 +1,4 @@
-%% Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
+% Copyright (c) 2015 Andreas Pels
 
 function [ fieldValuesNew ] = calculateGradientHOrder( fieldValues )
 %CALCULATEGRADIENTHORDER Calculate gradient approximation with fourth order

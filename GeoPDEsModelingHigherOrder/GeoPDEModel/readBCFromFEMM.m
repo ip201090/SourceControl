@@ -1,4 +1,4 @@
-%% Copyright (C) 2015 Andreas Pels, pels@gsc.tu-darmstadt.de
+% Copyright (c) 2015 Andreas Pels
 
 function [BCondition] = readBCFromFEMM(x, y, bnd_side, max_side)
 % readBCFromFEMM returns the values for the Dirichlet boundary condition
