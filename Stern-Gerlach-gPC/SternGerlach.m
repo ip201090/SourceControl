@@ -36,18 +36,18 @@ geometry.point2=[geometry.point1(1), 6.96];
 % Set displacements of the control points
 % ==> Experiment a little bit. You can find more information in the paper
 % ****************** THESE ARE THE UNCERTAINTIES **********************
-geometry.dispConvexX1=X(:,1);
-geometry.dispConvexY1=X(:,2);
+geometry.dispConvexX1=X(1);
+geometry.dispConvexY1=X(2);
 geometry.dispConvexW1=0.85;
-geometry.dispConvexX2=X(:,3);
-geometry.dispConvexY2=X(:,4);
-geometry.dispConvexW2=X(:,5);
-geometry.dispConcaveX1=X(:,6);
-geometry.dispConcaveY1=X(:,7);
+geometry.dispConvexX2=X(3);
+geometry.dispConvexY2=X(4);
+geometry.dispConvexW2=X(5);
+geometry.dispConcaveX1=X(6);
+geometry.dispConcaveY1=X(7);
 geometry.dispConcaveW1=0.87;
-geometry.dispConcaveX2=X(:,8);
-geometry.dispConcaveY2=X(:,9);
-geometry.dispConcaveW2=X(:,10);
+geometry.dispConcaveX2=X(8);
+geometry.dispConcaveY2=X(9);
+geometry.dispConcaveW2=X(10);
 
 % geometry.dispConvexX1=-3;
 % geometry.dispConvexY1=2;
