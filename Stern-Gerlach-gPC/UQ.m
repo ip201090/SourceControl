@@ -38,7 +38,7 @@ IOpts.Marginals(8).Type = 'Uniform';
 IOpts.Marginals(8).Parameters = [-2, 2];
 
 IOpts.Marginals(9).Type = 'Uniform';
-IOpts.Marginals(9).Parameters = [4, 5.5];
+IOpts.Marginals(9).Parameters = [4, 5];
 
 IOpts.Marginals(10).Type = 'Uniform';
 IOpts.Marginals(10).Parameters = [0.37, 2.87];
@@ -61,8 +61,9 @@ MetaOpts.FullModel = myModel;
 
 %% Quadrature Evaluation 
 
-MetaOpts.Method = 'Quadrature';
-MetaOpts.Quadrature.Type = 'Full';
+MetaOpts.Method = 'OLS';
+%MetaOpts.Quadrature.Type = 'Full';
+
 
 numbSamplesQuad = zeros(1,3);
 mean_quad = zeros(1,3);
@@ -71,17 +72,18 @@ degree = zeros(1,3);
 error_quad = zeros(1,3);
 %Sweeping over the Polynomial Degree as this is the decisive variable for
 %this method
-for k = 1:3
-    MetaOpts.Degree = k;
+for j = 1:3
+    MetaOpts.Degree = j;
+    MetaOpts.ExpDesign.NSamples = 30*MetaOpts(n);
     PCE_Quadrature = uq_createModel(MetaOpts);
-    numbSamplesQuad(k) = PCE_Quadrature.ExpDesign.NSamples;
-    mean_quad(k) = PCE_Quadrature.PCE.Moments.Mean;
-    sd_quad(k) = sqrt(PCE_Quadrature.PCE.Moments.Var);
+    % numbSamplesQuad(j) = PCE_Quadrature.ExpDesign.NSamples;
+    mean_quad(j) = PCE_Quadrature.PCE.Moments.Mean;
+    sd_quad(j) = sqrt(PCE_Quadrature.PCE.Moments.Var);
     
     if PCE_Quadrature.Error.normEmpError < 1e-20
-        error_quad(k) = 0;
+        error_quad(j) = 0;
     else
-        error_quad(k) = PCE_Quadrature.Error.normEmpError;
+        error_quad(j) = PCE_Quadrature.Error.normEmpError;
     end
-    degree(k) = k;
+    degree(j) = j;
 end
