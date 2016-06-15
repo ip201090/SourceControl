@@ -13,7 +13,7 @@ MOpts.mFile = 'SternGerlach' ;
 MOpts.isVectorized = false;
 myModel = uq_createModel(MOpts);
 
-% Input Creation 
+% Input Creation
 IOpts.Marginals(1).Type = 'Uniform';
 IOpts.Marginals(1).Parameters = [-3, -2];
 
@@ -60,12 +60,11 @@ MetaOpts.Input = myInput;
 % Specification of the Model
 MetaOpts.FullModel = myModel;
 
-%% Quadrature Evaluation 
+%% LARS Evaluation
 
-MetaOpts.Method = 'Quadrature';
-MetaOpts.Quadrature.Type = 'Smolyak';
+MetaOpts.Method = 'OLS';
 
-numbSamplesQuad = zeros(1,3);
+numbSamplesOLS = zeros(1,3);
 mean_quad = zeros(1,3);
 sd_quad = zeros(1,3);
 degree = zeros(1,3);
@@ -75,10 +74,11 @@ error_quad = zeros(1,3);
 %this method
 for j = 1:3
     MetaOpts.Degree = j;
-    PCE_Quadrature = uq_createModel(MetaOpts);
-    % numbSamplesQuad(j) = PCE_Quadrature.ExpDesign.NSamples;
-    mean_quad(j) = PCE_Quadrature.PCE.Moments.Mean;
-    sd_quad(j) = sqrt(PCE_Quadrature.PCE.Moments.Var);
+    MetaOpts.ExpDesign.NSamples = 20*j;
+    PCE_LARS = uq_createModel(MetaOpts);
+    numbSamplesOLS(j) = PCE_LARS.ExpDesign.NSamples;
+    mean_quad(j) = PCE_LARS.PCE.Moments.Mean;
+    sd_quad(j) = sqrt(PCE_LARS.PCE.Moments.Var);
     
     if PCE_Quadrature.Error.normEmpError < 1e-20
         error_quad(j) = 0;
