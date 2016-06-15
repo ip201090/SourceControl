@@ -1,7 +1,7 @@
 function f = SternGerlach(X)
 %% Setup of the Parameters
 
-% Current Excitation 
+% Current Excitation
 turns=65;
 current=40;
 
@@ -37,22 +37,19 @@ geometry.point2=[geometry.point1(1), 6.96];
 % ==> Experiment a little bit. You can find more information in the paper
 % ****************** THESE ARE THE UNCERTAINTIES **********************
 
-temp = size(X,1);
-
-for j=1:temp
-geometry.dispConvexX1=X(j,1);
-geometry.dispConvexY1=X(j,2);
+geometry.dispConvexX1=X(1);
+geometry.dispConvexY1=X(2);
 geometry.dispConvexW1=0.85;
-geometry.dispConvexX2=X(j,3);
-geometry.dispConvexY2=X(j,4);
-geometry.dispConvexW2=X(j,5);
-geometry.dispConcaveX1=X(j,6);
-geometry.dispConcaveY1=X(j,7);
+geometry.dispConvexX2=X(3);
+geometry.dispConvexY2=X(4);
+geometry.dispConvexW2=X(5);
+geometry.dispConcaveX1=X(6);
+geometry.dispConcaveY1=X(7);
 geometry.dispConcaveW1=0.87;
-geometry.dispConcaveX2=X(j,8);
-geometry.dispConcaveY2=X(j,9);
-geometry.dispConcaveW2=X(j,10);
-end
+geometry.dispConcaveX2=X(8);
+geometry.dispConcaveY2=X(9);
+geometry.dispConcaveW2=X(10);
+
 
 % geometry.dispConvexX1=-3;
 % geometry.dispConvexY1=2;

@@ -10,6 +10,7 @@ uqlab
 
 % Creation of a Model
 MOpts.mFile = 'SternGerlach' ;
+MOpts.isVectorized = false;
 myModel = uq_createModel(MOpts);
 
 % Input Creation 
@@ -61,20 +62,19 @@ MetaOpts.FullModel = myModel;
 
 %% Quadrature Evaluation 
 
-MetaOpts.Method = 'OLS';
-%MetaOpts.Quadrature.Type = 'Full';
-
+MetaOpts.Method = 'Quadrature';
+MetaOpts.Quadrature.Type = 'Full';
 
 numbSamplesQuad = zeros(1,3);
 mean_quad = zeros(1,3);
 sd_quad = zeros(1,3);
 degree = zeros(1,3);
 error_quad = zeros(1,3);
+
 %Sweeping over the Polynomial Degree as this is the decisive variable for
 %this method
 for j = 1:3
     MetaOpts.Degree = j;
-    MetaOpts.ExpDesign.NSamples = 30*MetaOpts(n);
     PCE_Quadrature = uq_createModel(MetaOpts);
     % numbSamplesQuad(j) = PCE_Quadrature.ExpDesign.NSamples;
     mean_quad(j) = PCE_Quadrature.PCE.Moments.Mean;
