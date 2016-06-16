@@ -104,7 +104,6 @@ MetaOpts.FullModel = myModel;
 
 %Calculation of a OLS regression model by sweeping the polynomial degree
 MetaOpts.Method = 'OLS';
-
 MetaOpts.ExpDesign.Sampling = 'MC';
 
 mean_ols = zeros(1,15);

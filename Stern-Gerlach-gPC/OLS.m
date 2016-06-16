@@ -63,27 +63,28 @@ MetaOpts.FullModel = myModel;
 %% LARS Evaluation
 
 MetaOpts.Method = 'OLS';
+MetaOpts.ExpDesign.Sampling = 'MC';
 
 numbSamplesOLS = zeros(1,3);
-mean_quad = zeros(1,3);
-sd_quad = zeros(1,3);
+mean_OLS = zeros(1,3);
+sd_OLS = zeros(1,3);
 degree = zeros(1,3);
-error_quad = zeros(1,3);
+error_OLS = zeros(1,3);
 
 %Sweeping over the Polynomial Degree as this is the decisive variable for
 %this method
 for j = 1:3
     MetaOpts.Degree = j;
-    MetaOpts.ExpDesign.NSamples = 20*j;
-    PCE_LARS = uq_createModel(MetaOpts);
-    numbSamplesOLS(j) = PCE_LARS.ExpDesign.NSamples;
-    mean_quad(j) = PCE_LARS.PCE.Moments.Mean;
-    sd_quad(j) = sqrt(PCE_LARS.PCE.Moments.Var);
+    MetaOpts.ExpDesign.NSamples = 3*nchoosek(MetaOpts.Degree+10,MetaOpts.Degree);
+    PCE_OLS = uq_createModel(MetaOpts);
+    numbSamplesOLS(j) = PCE_OLS.ExpDesign.NSamples;
+    mean_OLS(j) = PCE_OLS.PCE.Moments.Mean;
+    sd_OLS(j) = sqrt(PCE_OLS.PCE.Moments.Var);
     
-    if PCE_Quadrature.Error.normEmpError < 1e-20
-        error_quad(j) = 0;
+    if PCE_OLS.Error.normEmpError < 1e-20
+        error_OLS(j) = 0;
     else
-        error_quad(j) = PCE_Quadrature.Error.normEmpError;
+        error_OLS(j) = PCE_OLS.Error.normEmpError;
     end
     degree(j) = j;
 end

@@ -65,24 +65,24 @@ geometry.dispConcaveW2=X(10);
 % geometry.dispConcaveW2=2.5;
 
 % Solve partial model in GeoPDEs
-tic;
+
 [u, space, geometryGeoPDEs, gnum]=solve(15,15,0, current, 1, geometry);
-toc;
+
 
 %% Calculation of he Average B-Field Gradient
 
 % Determination of the B-Field
 %[fieldValuesGeoPDEsExact, x, y]=sp_eval_phys_2d(u(gnum{2}), space{2}, geometryGeoPDEs(2), [-1.5 -0.5], [0 3.0], [20 20], 'gradient');
 
-tic;
+
 averageGradientGeoPDEsExact=sp_int_phys_2d(u(gnum{2}), space{2}, geometryGeoPDEs(2), [-1.5 -1], [0 3], 'hessian')./1.5;
-toc;
+
 
 %% Calculation of the Homogeneity
 
-tic;
+
 fieldHomogeneityGeoPDEsExact=calculateFieldHomogeneityExact(u(gnum{2}), space{2}, geometryGeoPDEs(2), [-1.5 -1], [0 3], averageGradientGeoPDEsExact);
-toc;
+
 
 %% Setup of the Goal Function
 f = goalFunction(averageGradientGeoPDEsExact,fieldHomogeneityGeoPDEsExact);

@@ -1,5 +1,5 @@
 %% UNCERTAINTY QUANTIFICATION OF THE STERN-GERLACH MAGNET
-
+tic;
 %% Initilization of UQLab
 % clear variables;
 % clc;
@@ -63,27 +63,30 @@ MetaOpts.FullModel = myModel;
 %% LARS Evaluation
 
 MetaOpts.Method = 'LARS';
+MetaOpts.ExpDesign.Sampling = 'MC';
 
 numbSamplesLARS = zeros(1,3);
-mean_quad = zeros(1,3);
-sd_quad = zeros(1,3);
+mean_LARS = zeros(1,3);
+sd_LARS = zeros(1,3);
 degree = zeros(1,3);
-error_quad = zeros(1,3);
+error_LARS = zeros(1,3);
 
 %Sweeping over the Polynomial Degree as this is the decisive variable for
 %this method
+
 for j = 1:3
-    MetaOpts.Degree = j;
-    MetaOpts.ExpDesign.NSamples = 10;
+    MetaOpts.Degree = 1:j;
+    MetaOpts.ExpDesign.NSamples = 3*nchoosek(MetaOpts.Degree+10,MetaOpts.Degree);
     PCE_LARS = uq_createModel(MetaOpts);
     numbSamplesLARS(j) = PCE_LARS.ExpDesign.NSamples;
-    mean_quad(j) = PCE_LARS.PCE.Moments.Mean;
-    sd_quad(j) = sqrt(PCE_LARS.PCE.Moments.Var);
+    mean_LARS(j) = PCE_LARS.PCE.Moments.Mean;
+    sd_LARS(j) = sqrt(PCE_LARS.PCE.Moments.Var);
     
-    if PCE_Quadrature.Error.normEmpError < 1e-20
-        error_quad(j) = 0;
+    if PCE_LARS.Error.normEmpError < 1e-20
+        error_LARS(j) = 0;
     else
-        error_quad(j) = PCE_Quadrature.Error.normEmpError;
+        error_LARS(j) = PCE_LARS.Error.normEmpError;
     end
     degree(j) = j;
 end
+toc;
