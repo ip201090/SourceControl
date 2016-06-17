@@ -1,5 +1,5 @@
 %% UNCERTAINTY QUANTIFICATION OF THE STERN-GERLACH MAGNET
-
+tic;
 %% Initilization of UQLab
 % clear variables;
 % clc;
@@ -88,3 +88,4 @@ for j = 1:3
     end
     degree(j) = j;
 end
+toc;
