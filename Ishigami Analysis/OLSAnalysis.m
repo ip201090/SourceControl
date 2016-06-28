@@ -55,7 +55,7 @@ for n=1:15
     % Expressing the amount of samples in dependece on the polynomial
     % degree...the higher the polynomial degree, the more samples you need,
     % but unforutunately this relation is not linear
-    numbOLSSamp (n) = 100*MetaOpts.Degree;
+    numbOLSSamp (n) = 3*nchoosek(MetaOpts.Degree+3,MetaOpts.Degree);
     MetaOpts.ExpDesign.NSamples = numbOLSSamp(n);
     PCE_OLS = uq_createModel(MetaOpts);
     mean_ols(n) = PCE_OLS.PCE.Moments.Mean;

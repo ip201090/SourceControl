@@ -4,6 +4,7 @@
 % clc;
 % close all;
 %% Initializing UQLab
+tic;
 uqlab
 clearvars
 
@@ -50,7 +51,7 @@ error_lars = zeros(1,15);
 
 for k =1:15
    MetaOpts.Degree = k;
-   numbSamplesLARS(k) = k*100;
+   numbSamplesLARS(k) = ceil(0.9*nchoosek(MetaOpts.Degree+3,MetaOpts.Degree));
    MetaOpts.ExpDesign.NSamples = numbSamplesLARS(k);
    PCE_LARS = uq_createModel(MetaOpts);
    mean_lars(k) = PCE_LARS.PCE.Moments.Mean;
@@ -136,4 +137,4 @@ drawnow
 ha2 = gca;
 set(ha2,'yscale','log');
 
-
+toc;
