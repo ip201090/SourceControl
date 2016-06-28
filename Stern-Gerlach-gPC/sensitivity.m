@@ -11,7 +11,7 @@ MOpts.isVectorized = false;
 myModel = uq_createModel(MOpts);
 
 % Input Creation
-Iopts.Marginals(1).Name = 'x1';
+IOpts.Marginals(1).Name = 'x1';
 IOpts.Marginals(1).Type = 'Uniform';
 IOpts.Marginals(1).Parameters = [-3, -2];
 
@@ -23,7 +23,7 @@ IOpts.Marginals(3).Name = 'x2';
 IOpts.Marginals(3).Type = 'Uniform';
 IOpts.Marginals(3).Parameters = [-5, -2];
 
-IOpts.Marginals(3).Name = 'y2';
+IOpts.Marginals(4).Name = 'y2';
 IOpts.Marginals(4).Type = 'Uniform';
 IOpts.Marginals(4).Parameters = [2.5, 4.5];
 
@@ -53,25 +53,37 @@ IOpts.Marginals(10).Parameters = [0.37, 2.87];
 
 myInput = uq_createInput(IOpts);
 
-%% Sensitivty Analysis with Sobol Indices
+%% PCE Based Sensitivty Analysis with Sobol Indices
 
+% Setup of the PCE
+tic;
+PCEOpts.Type = 'uq_metamodel';
+PCEOpts.MetaType = 'PCE';
+PCEOpts.Input = myInput;
+PCEOpts.FullModel = myModel;
+PCEOpts.Degree = 2;
+PCEOpts.ExpDesign.NSamples = 30;
+myPCE = uq_createModel(PCEOpts);
+toc;
+
+tic;
 % Selection of the Sensitivity Tool: Sobol Indices
-SobolOpts.Type = 'uq_sensitivity';
-SobolOpts.Method = 'Sobol';
+PCESobol.Type = 'uq_sensitivity';
+PCESobol.Method = 'Sobol';
 
 % Maximum Order of the Sobol Indices
-SobolOpts.Sobol.Order = 1;
+PCESobol.Sobol.Order = 1;
 
 % Specify the sample size of each variable. Note that the total cost will
 % equal (M+2)*SampleSize for sampling-based Sobol' indices calculation.
-SobolOpts.Sobol.SampleSize = 10;
+%SobolOpts.Sobol.SampleSize = 10;
 
 % Create and add the sensitivity analysis to UQLab
-SobolAnalysis = uq_createAnalysis(SobolOpts);
-
+PCESobolAnalysis = uq_createAnalysis(PCESobol);
+toc;
 %% Representation of the Results
 %  Printout a report of the results:
-uq_print(SobolAnalysis);
+uq_print(PCESobolAnalysis);
 
 % Create a graphical representation of the results
-uq_display(SobolAnalysis);
+uq_display(PCESobolAnalysis);

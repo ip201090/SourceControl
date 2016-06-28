@@ -73,7 +73,7 @@ error_quad = zeros(1,3);
 
 %Sweeping over the Polynomial Degree as this is the decisive variable for
 %this method
-for j = 1:5
+for j = 1:3
     MetaOpts.Degree = j;
     PCE_Quadrature = uq_createModel(MetaOpts);
     numbSamplesQuad(j) = PCE_Quadrature.ExpDesign.NSamples;
@@ -87,4 +87,5 @@ for j = 1:5
     end
     degree(j) = MetaOpts.Degree;
 end
+
 toc;
