@@ -311,18 +311,20 @@ meanPlot(15) = y_mean(10000);
 figure;
 uq_plot(plotRange,meanPlot,'b',...
     numbSamplesQuad,mean_quad,'-ro',...
-    numbOLSSamp,mean_ols,'g',...
+    numbOLSSamp,mean_ols,'-gd',...
     numbSamplesQuadSparse,mean_quad_sparse,'m',...
     numbSamplesLARS,mean_lars,'c');
-xlim([0 10000]);
+xlim([0 2000]);
 xlabel('Amount of Samples'),ylabel('Mean');
+title('Mean Convergence in Dependence on the Sample Number');
 
 % Mean plot in dependency on the polynomial degree
 figure;
 uq_plot(degree,mean_quad,'-ro',...
-    degreeOLS,mean_ols,'-.g^',...
+    degreeOLS,mean_ols,'-gd',...
     degreeSparse,mean_quad_sparse,'-mx',degreeLARS,mean_lars,'-c*');
 xlabel('Polynomial Degree'),ylabel('Mean');
+title('Mean Convergence in Dependence on the Polynomial Degree');
 %% SD Plot for the Respective Methods
 sdPlot = zeros(1,15);
 
@@ -345,17 +347,19 @@ sdPlot(15) = y_std(10000);
 % SD plot in dependency on the sample number
 figure;
 uq_plot(plotRange,sdPlot,'b',numbSamplesQuad,sd_quad,'-ro',...
-    numbOLSSamp,sd_ols,'-.g^',numbSamplesQuadSparse,sd_quad_sparse,'-mx',...
+    numbOLSSamp,sd_ols,'-gd',numbSamplesQuadSparse,sd_quad_sparse,'-mx',...
     numbSamplesLARS,sd_lars,'-c*');
-xlim([0 10000]);
+xlim([0 2000]);
 xlabel('Amount of Samples'),ylabel('SD');
+title('SD Convergence in Dependence on the Sample Number');
 
 % SD plot in dependency on the polynomial degree
 figure;
 uq_plot(degree,sd_quad,'-ro',...
-    degreeOLS,sd_ols,'-.g^', ...
+    degreeOLS,sd_ols,'-gd', ...
     degreeSparse,sd_quad_sparse,'-mx',degreeLARS,sd_lars,'-c*');
 xlabel('Polynomial Degree'),ylabel('SD');
+title('SD Convergence in Dependence on the Polynomial Degree');
 %% Error Plot for the Respective Methods
 
 errorPlot = zeros(1,15);
@@ -379,10 +383,12 @@ errorPlot(15) = errorMC(10000);
 % Error plot in dependency on the sample number
 figure;
 uq_plot(plotRange,errorPlot,'b',numbSamplesQuad,error_quad,'-ro',...
-    numbOLSSamp,error_ols,'-.g^',...
+    numbOLSSamp,error_ols,'-gd',...
     numbSamplesQuadSparse,error_quad_sparse,'-mx',...
     numbSamplesLARS,error_lars,'-c*');
 xlim([0 10000]);
+xlabel('Amount of Samples');ylabel('Error');
+title('Error in Dependence on the Sample Number');
 drawnow
 
 ha2 = gca;
@@ -390,8 +396,10 @@ set(ha2,'yscale','log');
 
 % Error plot in dependency on the polynomial degree
 figure;
-uq_plot(degree,error_quad,'r',degreeOLS,error_ols,'g',...
-    degreeSparse,error_quad_sparse,'m',degreeLARS,error_lars,'c');
+uq_plot(degree,error_quad,'-ro',degreeOLS,error_ols,'-gd',...
+    degreeSparse,error_quad_sparse,'-mx',degreeLARS,error_lars,'-c*');
+xlabel('Polynomial Degree');ylabel('Error');
+title('Error in Dependence on the Polynomial Degree');
 
 ha3 = gca;
 set(ha3,'yscale','log');

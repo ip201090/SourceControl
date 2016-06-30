@@ -77,7 +77,7 @@ error_LARS = zeros(1,3);
 for j = 1:3
     tic;
     MetaOpts.Degree = 1:j;
-    MetaOpts.ExpDesign.NSamples = ceil(0.9*nchoosek(MetaOpts.Degree(j)+10,MetaOpts.Degree(j)));
+    MetaOpts.ExpDesign.NSamples = ceil(0.5*nchoosek(MetaOpts.Degree(j)+10,MetaOpts.Degree(j)));
     PCE_LARS = uq_createModel(MetaOpts);
     numbSamplesLARS(j) = PCE_LARS.ExpDesign.NSamples;
     mean_LARS(j) = PCE_LARS.PCE.Moments.Mean;
