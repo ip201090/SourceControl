@@ -71,7 +71,7 @@ MetaOpts.Input = myInput;
 % Specification of the Model
 MetaOpts.FullModel = myModel;
 
-%% LARS Evaluation
+%% OLS Evaluation
 
 MetaOpts.Method = 'OLS';
 MetaOpts.ExpDesign.Sampling = 'MC';

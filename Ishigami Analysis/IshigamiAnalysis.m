@@ -7,6 +7,7 @@ close all;
 %% Initializing UQLab
 uqlab
 clearvars
+
 %% Creation of a Model
 MOpts.mFile = 'uq_ishigami' ;
 myModel = uq_createModel(MOpts);
