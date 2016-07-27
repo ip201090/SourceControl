@@ -14,7 +14,6 @@ MOpts.isVectorized = false;
 myModel = uq_createModel(MOpts);
 
 % Input Creation
-% Input Creation
 IOpts.Marginals(1).Name = 'x1';
 IOpts.Marginals(1).Type = 'Uniform';
 IOpts.Marginals(1).Parameters = [-3, -2];
@@ -75,16 +74,17 @@ MetaOpts.FullModel = myModel;
 
 MetaOpts.Method = 'OLS';
 MetaOpts.ExpDesign.Sampling = 'MC';
+MetaOpts.TruncOptions.qNorm = 0.5;
 
-numbSamplesOLS = zeros(1,2);
-mean_OLS = zeros(1,2);
-sd_OLS = zeros(1,2);
-degree = zeros(1,2);
-error_OLS = zeros(1,2);
+numbSamplesOLS = zeros(1,3);
+mean_OLS = zeros(1,3);
+sd_OLS = zeros(1,3);
+degree = zeros(1,3);
+error_OLS = zeros(1,3);
 
 %Sweeping over the Polynomial Degree as this is the decisive variable for
 %this method
-for j = 1:2
+for j = 1:3
     MetaOpts.Degree = j;
     MetaOpts.ExpDesign.NSamples = 3*nchoosek(MetaOpts.Degree+10,MetaOpts.Degree);
     PCE_OLS = uq_createModel(MetaOpts);
