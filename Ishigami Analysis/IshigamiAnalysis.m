@@ -70,11 +70,11 @@ for k = 1:15
     mean_quad(k) = PCE_Quadrature.PCE.Moments.Mean;
     sd_quad(k) = sqrt(PCE_Quadrature.PCE.Moments.Var);
     
-    if PCE_Quadrature.Error.normEmpError < 1e-20
-        error_quad(k) = 0;
-    else
+   % if PCE_Quadrature.Error.normEmpError < 1e-20
+    %    error_quad(k) = 0;
+    %else
         error_quad(k) = PCE_Quadrature.Error.normEmpError;
-    end
+    %end
     degree(k) = k;
 end
 
@@ -173,11 +173,11 @@ for k = 1:15
     mean_quad_sparse(k) = PCE_QuadratureSparse.PCE.Moments.Mean;
     sd_quad_sparse(k) = sqrt(PCE_QuadratureSparse.PCE.Moments.Var);
     
-    if PCE_QuadratureSparse.Error.normEmpError < 1e-20
-        error_quad_sparse(k) = 0;
-    else
+    %if PCE_QuadratureSparse.Error.normEmpError < 1e-20
+    %    error_quad_sparse(k) = 0;
+    % else
         error_quad_sparse(k) = PCE_QuadratureSparse.Error.normEmpError;
-    end
+    % end
     degreeSparse(k) = k;
 end
 

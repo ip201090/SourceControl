@@ -113,11 +113,11 @@ PCESobol.Sobol.Order = 1;
 %SobolOpts.Sobol.SampleSize = 10;
 
 % Create and add the sensitivity analysis to UQLab
-PCESobolAnalysis = uq_createAnalysis(PCESobol);
+PCESobolAnalysisQuadrature = uq_createAnalysis(PCESobol);
 toc;
 %% Representation of the Results
 %  Printout a report of the results:
-uq_print(PCESobolAnalysis);
+uq_print(PCESobolAnalysisQuadrature);
 
 % Create a graphical representation of the results
-uq_display(PCESobolAnalysis);
+uq_display(PCESobolAnalysisQuadrature);
