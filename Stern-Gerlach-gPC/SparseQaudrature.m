@@ -9,7 +9,7 @@ uqlab
 %% Setup of the UQ with gPC
 
 % Creation of a Model
-MOpts.mFile = 'SternGerlach' ;
+MOpts.mFile = 'SternGerlach';
 MOpts.isVectorized = false;
 myModel = uq_createModel(MOpts);
 
