@@ -52,6 +52,63 @@ switch size(X,2)
         geometry.dispConcaveX2=X(2);
         geometry.dispConcaveY2=4.75;
         geometry.dispConcaveW2=1.62;
+        
+    case 3
+        geometry.dispConvexX1=X(1);
+        geometry.dispConvexY1=1.83;
+        geometry.dispConvexW1=0.85;
+        geometry.dispConvexX2=X(2);
+        geometry.dispConvexY2=3.5;
+        geometry.dispConvexW2=1.6;
+        geometry.dispConcaveX1=2;
+        geometry.dispConcaveY1=2.2;
+        geometry.dispConcaveW1=0.87;
+        geometry.dispConcaveX2=X(3);
+        geometry.dispConcaveY2=4.75;
+        geometry.dispConcaveW2=1.62;
+        
+    case 4
+        geometry.dispConvexX1=X(1);
+        geometry.dispConvexY1=1.83;
+        geometry.dispConvexW1=0.85;
+        geometry.dispConvexX2=X(2);
+        geometry.dispConvexY2=X(3);
+        geometry.dispConvexW2=1.6;
+        geometry.dispConcaveX1=2;
+        geometry.dispConcaveY1=2.2;
+        geometry.dispConcaveW1=0.87;
+        geometry.dispConcaveX2=X(4);
+        geometry.dispConcaveY2=4.75;
+        geometry.dispConcaveW2=1.62;
+        
+    case 5
+        geometry.dispConvexX1=X(1);
+        geometry.dispConvexY1=1.83;
+        geometry.dispConvexW1=0.85;
+        geometry.dispConvexX2=X(2);
+        geometry.dispConvexY2=X(3);
+        geometry.dispConvexW2=X(4);
+        geometry.dispConcaveX1=2;
+        geometry.dispConcaveY1=2.2;
+        geometry.dispConcaveW1=0.87;
+        geometry.dispConcaveX2=X(5);
+        geometry.dispConcaveY2=4.75;
+        geometry.dispConcaveW2=1.62;
+        
+    case 6
+        geometry.dispConvexX1=X(1);
+        geometry.dispConvexY1=1.83;
+        geometry.dispConvexW1=0.85;
+        geometry.dispConvexX2=X(2);
+        geometry.dispConvexY2=X(3);
+        geometry.dispConvexW2=X(4);
+        geometry.dispConcaveX1=X(5);
+        geometry.dispConcaveY1=2.2;
+        geometry.dispConcaveW1=0.87;
+        geometry.dispConcaveX2=X(6);
+        geometry.dispConcaveY2=4.75;
+        geometry.dispConcaveW2=1.62;
+        
 
     case 10
         geometry.dispConvexX1=X(1);
