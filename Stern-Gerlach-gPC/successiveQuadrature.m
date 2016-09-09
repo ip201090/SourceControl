@@ -19,9 +19,25 @@ IOpts.Marginals(1).Name = 'x1';
 IOpts.Marginals(1).Type = 'Uniform';
 IOpts.Marginals(1).Parameters = [-3, -2];
 
-IOpts.Marginals(2).Name = 'x4';
+IOpts.Marginals(2).Name = 'x2';
 IOpts.Marginals(2).Type = 'Uniform';
-IOpts.Marginals(2).Parameters = [-2, 2];
+IOpts.Marginals(2).Parameters = [-5, -2];
+
+IOpts.Marginals(3).Name = 'y2';
+IOpts.Marginals(3).Type = 'Uniform';
+IOpts.Marginals(3).Parameters = [2.5, 4.5];
+
+IOpts.Marginals(4).Name = 'w2';
+IOpts.Marginals(4).Type = 'Uniform';
+IOpts.Marginals(4).Parameters = [0.35, 2.85];
+
+IOpts.Marginals(5).Name = 'x3';
+IOpts.Marginals(5).Type = 'Uniform';
+IOpts.Marginals(5).Parameters = [1.5, 2.5];
+
+IOpts.Marginals(6).Name = 'x4';
+IOpts.Marginals(6).Type = 'Uniform';
+IOpts.Marginals(6).Parameters = [-2, 2];
 
 myInput = uq_createInput(IOpts);
 
@@ -30,7 +46,8 @@ MetaOpts.Type = 'uq_metamodel';
 MetaOpts.MetaType = 'PCE';
 
 % Definition of the polynomials regarding their distribution
-MetaOpts.PolyTypes = {'Legendre','Legendre'};
+MetaOpts.PolyTypes = {'Legendre','Legendre','Legendre',...
+    'Legendre','Legendre','Legendre'};
 
 % Specification of the input
 MetaOpts.Input = myInput;
@@ -41,7 +58,7 @@ MetaOpts.FullModel = myModel;
 %% Quadrature Evaluation 
 
 MetaOpts.Method = 'Quadrature';
-MetaOpts.Quadrature.Type = 'Full';
+MetaOpts.Quadrature.Type = 'Smolyak';
 
 numbSamplesTotalQuad = zeros(1,3);
 mean_total_quad = zeros(1,3);
