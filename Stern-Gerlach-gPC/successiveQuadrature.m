@@ -39,6 +39,10 @@ IOpts.Marginals(6).Name = 'x4';
 IOpts.Marginals(6).Type = 'Uniform';
 IOpts.Marginals(6).Parameters = [-2, 2];
 
+IOpts.Marginals(7).Name = 'y4';
+IOpts.Marginals(7).Type = 'Uniform';
+IOpts.Marginals(7).Parameters = [4, 5.5];
+
 myInput = uq_createInput(IOpts);
 
 % Setup of the PCE
@@ -47,7 +51,7 @@ MetaOpts.MetaType = 'PCE';
 
 % Definition of the polynomials regarding their distribution
 MetaOpts.PolyTypes = {'Legendre','Legendre','Legendre',...
-    'Legendre','Legendre','Legendre'};
+    'Legendre','Legendre','Legendre','Legendre'};
 
 % Specification of the input
 MetaOpts.Input = myInput;
