@@ -11,6 +11,12 @@ load('resultsTotalQuad.mat');
 
 %% Displaying the results
 
+figure;
+uq_plot(degree,numbSamplesQuad,'r-d',degree,numbSamplesOLS,'k-o',...
+    degree,numbSamplesLARS,'b-^');
+xlabel('Polynomial Degree'),ylabel('Amount of Evaluations');
+legend('Sparse Quadrature','OLS','LAR','Location','northwest');
+
 % Mean Plots
 figure;
 uq_plot(numbSamplesQuad,mean_quad,'r-d',numbSamplesOLS,mean_OLS,'k-o',...
