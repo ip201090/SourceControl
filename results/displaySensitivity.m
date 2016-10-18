@@ -45,7 +45,7 @@ b(2).FaceColor = 'black';
 b(3).FaceColor = 'blue';
 set(gca, 'xtick', 1:length(IOpts.Marginals), 'xticklabel', PCESobolAnalysisQuadrature.Results.VariableNames, 'fontsize',16);
 xlabel('Uncertainties', 'fontsize', 16,'FontWeight','bold');
-ylabel('Total Sobol Indice','fontsize',16,'FontWeight','bold');
+ylabel('Total Sobol Indices','fontsize',16,'FontWeight','bold');
 legend('Sparse Quadrature','OLS','LAR','Location','northwest');
 grid on;
 
@@ -56,6 +56,6 @@ c(2).FaceColor = 'black';
 c(3).FaceColor = 'blue';
 set(gca, 'xtick', 1:length(IOpts.Marginals), 'xticklabel', PCESobolAnalysisQuadrature.Results.VariableNames, 'fontsize',16);
 xlabel('Uncertainties', 'fontsize', 16,'FontWeight','bold');
-ylabel('First Order Sobol Indice','fontsize',16,'FontWeight','bold');
+ylabel('First Order Sobol Indices','fontsize',16,'FontWeight','bold');
 legend('Sparse Quadrature','OLS','LAR','Location','northwest');
 grid on;

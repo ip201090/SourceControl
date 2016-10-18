@@ -1,6 +1,7 @@
 %% Script to compare the results obtained by the enhanced sparse models
 close all;
 clear all;
+clc;
 
 %% Loading the results
 uqlab;
@@ -16,4 +17,4 @@ uq_plot(numbSamples_3RV,error_3RV,'r',numbSamples_4RV,error_4RV,'b',...
     numbSamples_5RV,error_5RV,'g',numbSamples_6RV,error_6RV,'c',...
     numbSamples_7RV,error_7RV,'m',numbSamples_8RV,error_8RV,'k');
 xlabel('Amount of Evaluations'),ylabel('Error');
-legend('3RV','4RV','5RV','6RV','7RV','8RV');
+legend('3RV','4RV','5RV','6RV','7RV','8RV','Location','southeast');

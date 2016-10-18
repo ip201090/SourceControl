@@ -20,8 +20,7 @@ xlabel('Amount of Evaluations'),ylabel('Mean Value');
 legend('Sparse Quadrature','OLS','LAR','Total Quadrature');
 
 figure;
-uq_plot(degree,mean_quad,'r-d',degree,mean_OLS,'k-o',...
-    degree,mean_LARS,'b-^', degree,mean_total_quad,'g-o');
+uq_plot(degree,mean_quad,'r-d',degree,mean_OLS,'k-o',degree,mean_LARS,'b-^', degree,mean_total_quad,'g-o');
     xlabel('Polynomial Degree'),ylabel('Mean Value');
     legend('Sparse Quadrature','OLS','LAR','Total Quadrature');
     
@@ -42,9 +41,9 @@ legend('Sparse Qaudrature','OLS','LAR','Total Quadrature','Location','southeast'
 % Sample Plot
 figure;
 uq_plot(degree,numbSamplesQuad,'r-d',degree,numbSamplesOLS,'k-o',...
-    degree,numbSamplesLARS,'b-^',degree,numbSamplesTotalQuad,'g-o');
+    degree,numbSamplesLARS,'b-^');
 xlabel('Polynomial Degree'),ylabel('Amount of Samples');
-legend('Sparse Quadrature','OLS','LARS','Total Quadrature','Location','northwest');
+legend('Sparse Quadrature','OLS','LAR','Location','northwest');
 
 
 % Error Plot
